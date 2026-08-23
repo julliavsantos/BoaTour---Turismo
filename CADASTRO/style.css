@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap%27');
+@media screen and (min-width: 1440px){
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+html,
+body {
+    overflow-x: hidden;
+}
+body{
+      background-image: url(fundo.png);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.total {
+    display: flex;
+    padding: 110px 60px 0 60px;
+    gap: 120px;
+}
+.container {
+    width: 50%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0 0 60px;
+}
+.container h1 {
+    width: 60%;
+    font-size: 50px;
+    color: white;
+    margin: 0 0 20px 0;
+}
+.container p {
+    width: 100%;
+    font-size: 35px;
+    color: white;
+    margin: 0;
+}
+.cadastro{
+   height: 90vh;
+   width: 55%;
+   border-radius: 10px;
+   background-color: #d8e6e7;
+   align-items: center;
+   padding: 30px 35px 30px 35px;
+}
+.cadastro {
+    height: 82vh;
+    width: 52%;
+    background: rgba(248, 251, 251, 0.97);
+    border: 1px solid rgba(81, 141, 147, 0.18);
+    border-radius: 16px;
+    padding: 25px 32px;
+    box-sizing: border-box;
+    box-shadow:
+        0 12px 30px rgba(7, 59, 64, 0.11);
+    position: relative;
+    overflow: hidden;
+}
+.cadastro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        #073b40,
+        #518d93,
+        #7ab6bb
+    );
+}
+.cadastro h1 {
+    width: 100%;
+    font-size: 35px;
+    color: #173d40;
+    margin: 0 0 3px 0;
+    font-weight: 700;
+}
+.cadastro > p:not(.fazerLogin) {
+    width: 100%;
+    font-size: 18px;
+    color: #718183;
+    margin: 0 0 20px 0;
+}
+.linha {
+    width: 100%;
+    height: auto;
+    margin-top: 9px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: visible;
+}
+.campo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.campo label {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #496467;
+    margin-bottom: 4px;
+}
+.campo input {
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid #d5e0e1;
+    background: #f3f7f7;
+    outline: none;
+    padding: 0 13px;
+    color: #1e3436;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    box-sizing: border-box;
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+.campo input::placeholder {
+    color: #a1abad;
+}
+.campo input:focus {
+    background: #ffffff;
+    border-color: #518d93;
+    box-shadow:
+        0 0 0 3px rgba(81, 141, 147, 0.12);
+}
+.campo-senha {
+    position: relative;
+    width: 100%;
+}
+.campo-senha input {
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid #d5e0e1;
+    background: #f3f7f7;
+    outline: none;
+    padding: 0 42px 0 13px;
+    box-sizing: border-box;
+    color: #1e3436;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+.campo-senha input::placeholder {
+    color: #a1abad;
+}
+.campo-senha input:focus {
+    background: #ffffff;
+    border-color: #518d93;
+    box-shadow:
+        0 0 0 3px rgba(81, 141, 147, 0.12);
+}
+.mostrar-senha {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #6c8587;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 3px;
+    transition: .2s;
+}
+.mostrar-senha:hover {
+    color: #073b40;
+}
+.opcoes {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+    padding-top: 13px;
+    border-top: 1px solid #dce5e5;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+.opcoes input {
+    display: none;
+}
+.opcoes label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #687b7d;
+    font-weight: 500;
+}
+.opcoes label::before {
+    content: "";
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #a9babb;
+    border-radius: 4px;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: .2s;
+}
+.opcoes input:checked + label::before {
+    background: #518d93;
+    border-color: #518d93;
+}
+.opcoes label span {
+    color: #518d93;
+    font-weight: 600;
+}
+.btnCadastro {
+    width: 100%;
+    height: 40px;
+    margin: 25px 0 20px 0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: linear-gradient(
+        135deg,
+        #073b40,
+        #518d93
+    );
+    color: #ffffff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow:
+        0 5px 12px rgba(7, 59, 64, 0.15);
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+.btnCadastro:hover {
+    background: linear-gradient(
+        135deg,
+        #0a4b50,
+        #3f777c
+    );
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 18px rgba(7, 59, 64, 0.20);
+}
+.fazerLogin {
+    width: 100% !important;
+    font-size: 13px !important;
+    color: #7a898a !important;
+    text-align: center;
+    margin: 0 !important;
+}
+.fazerLogin a {
+    color: #518d93;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: .2s;
+}
+.fazerLogin a:hover {
+    color: #073b40;
+    text-decoration: underline;
+}
+}
