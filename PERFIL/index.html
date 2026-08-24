@@ -61,14 +61,14 @@
             </div>
 
             <div class="perfil-links">
-                <a href="#">
+                <a href="#viagens">
                     <span>✈</span>
                     <div>
                         <strong>Minhas viagens</strong>
                         <small>Veja suas reservas</small>
                     </div>
                 </a>
-                <a href="#">
+                <a href="#favoritos">
                     <span>❤︎</span>
                     <div>
                         <strong>Favoritos</strong>
@@ -114,7 +114,7 @@
                         <strong>Minhas Viagens</strong>
                     </div>
                 </a>
-                <a href="#">
+                <a href="#favoritos">
                     <span><img src="../img/icones/coracao.png" alt=""></span>
                     <div>
                         <strong>Favoritos</strong>
@@ -126,7 +126,7 @@
                         <strong>Pagamentos</strong>
                     </div>
                 </a>
-                <a href="#">
+                <a href="#" id="btnNotificacoes">
                     <span><img src="../img/icones/sino.png" alt=""></span>
                     <div>
                         <strong>Notificações</strong>
@@ -152,20 +152,35 @@
                 <h1>Meu Perfil</h1>
 
                 <div class="quadro" id="perfil">
-                    <div class="quadro-top">
-                        <img src="../img/icones/perfil3.png" alt="">
-                        <div class="quadro-text">
-                        <h1>Viajante</h1>
-                        <p>email@gmail.com <br>
-                        Cliente desde 2026</p>
-                        </div>
-                        
-                    </div>
 
-                    <div class="quadro-bottom">
-                        <p id="btnEditarPerfil">Editar Perfil</p>
-                    </div>
-                </div>
+    <div class="banner-perfil" id="bannerPerfil"></div>
+
+    <div class="quadro-top">
+
+        <img src="../img/icones/perfil3.png" alt="">
+
+        <div class="quadro-text">
+
+            <h1>Viajante</h1>
+
+            <p>
+                email@gmail.com <br>
+                Cliente desde 2026
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="quadro-bottom">
+
+        <p id="btnEditarPerfil">
+            Editar Perfil
+        </p>
+
+    </div>
+
+</div>
                 
                 <div class="viagens-text" id="viagens">
                     <p>Minhas Viagens</p>
@@ -223,6 +238,56 @@
             </div>
                     </div>
             
+            </div>
+
+                <div class="viagens-text" id="favoritos">
+                    <p>Favoritos</p>
+                    <h6 class="prev">Ver todos</h6>
+                </div>
+                <div class="viagens">
+                    
+                <div class="viagens-grid">
+            <div class="card-viagem02">
+                <div class="imagem-viagem">
+                    <img src="../img/ofertas/cancun.jpg" alt="Cancún">
+                </div>
+    
+                <div class="info-viagem02">
+                    <h3>Cancún</h3>
+                </div>
+            </div>
+                
+            <div class="card-viagem02">
+                <div class="imagem-viagem">
+                    <img src="../img/ofertas/cancun.jpg" alt="Cancún">
+                </div>
+    
+                <div class="info-viagem02">
+                    <h3>Cancún</h3>
+                </div>
+            </div>
+
+            <div class="card-viagem02">
+                <div class="imagem-viagem">
+                    <img src="../img/ofertas/cancun.jpg" alt="Cancún">
+                </div>
+    
+                <div class="info-viagem02">
+                    <h3>Cancún</h3>
+                </div>
+            </div>
+
+            <div class="card-viagem02">
+                <div class="imagem-viagem">
+                    <img src="../img/ofertas/cancun.jpg" alt="Cancún">
+                </div>
+    
+                <div class="info-viagem02">
+                    <h3>Cancún</h3>
+                </div>
+            </div>
+        
+                </div>
             </div>
     
         </div>
@@ -301,8 +366,186 @@
             </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/modais.js"></script>
+    <div class="modal-notificacoes" id="modalNotificacoes">
+    <div class="notificacoes">
+
+        <button class="fechar-notificacoes" id="fecharNotificacoes">
+            &times;
+        </button>
+
+        <h2>Notificações</h2>
+
+        <div class="notificacao">
+            <div class="icone-notificacao" style="color: white; font-size: 24px;">&#x1F56D</div>
+
+            <div>
+                <strong>Novidades na BoaTour!</strong>
+                <p>Confira nossos novos destinos e ofertas especiais.</p>
+                <small>Agora</small>
+            </div>
+        </div>
+
+        <div class="notificacao">
+            <div class="icone-notificacao" style="color: white; font-size: 20px;">&#9992;</div>
+
+            <div>
+                <strong>Prepare sua próxima viagem</strong>
+                <p>Explore destinos incríveis para sua próxima aventura.</p>
+                <small>Há 2 horas</small>
+            </div>
+        </div>
+
+        <div class="notificacao">
+            <div class="icone-notificacao" style="color: white; font-size: 20px;">&#x1F3D9</div>
+
+            <div>
+                <strong>Novas ofertas disponíveis</strong>
+                <p>Aproveite condições especiais para sua próxima viagem.</p>
+                <small>Ontem</small>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <div class="modal-editar-perfil" id="modalEditarPerfil">
+    <div class="editar-perfil">
+
+        <button class="fechar-editar" id="fecharEditarPerfil">
+            &times;
+        </button>
+
+        <h2>Editar Perfil</h2>
+        <p class="subtitulo-editar">
+            Atualize suas informações pessoais e personalize seu perfil.
+        </p>
+
+        <!-- BANNER -->
+        <div class="banner-perfil-editar">
+
+            <p>Banner do perfil</p>
+
+            <div class="banners-opcoes">
+
+                <button class="banner-opcao ativo"
+                        data-banner="../img/banners/banner1.jpg">
+                    <img src="../img/banners/banner1.jpg" alt="Banner 1">
+                </button>
+
+                <button class="banner-opcao"
+                        data-banner="../img/banners/banner2.jpg">
+                    <img src="../img/banners/banner2.jpg" alt="Banner 2">
+                </button>
+
+                <button class="banner-opcao"
+                        data-banner="../img/banners/banner3.jpg">
+                    <img src="../img/banners/banner3.jpg" alt="Banner 3">
+                </button>
+
+                <button class="banner-opcao"
+                        data-banner="../img/banners/banner4.jpg">
+                    <img src="../img/banners/banner4.jpg" alt="Banner 4">
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOTO DE PERFIL -->
+        <div class="foto-perfil-editar">
+
+            <div class="foto-editar">
+                <img src="../img/icones/perfil3.png" alt="Foto de perfil">
+            </div>
+
+            <div>
+                <strong>Foto de perfil</strong>
+
+                <button type="button" class="btn-foto">
+                    Alterar foto
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- CAMPOS -->
+        <div class="campos-perfil">
+
+            <div class="campo">
+                <label for="nomePerfil">Nome completo</label>
+                <input
+                    type="text"
+                    id="nomePerfil"
+                    value="Viajante"
+                >
+            </div>
+
+            <div class="campo">
+                <label for="emailPerfil">E-mail</label>
+                <input
+                    type="email"
+                    id="emailPerfil"
+                    value="email@gmail.com"
+                >
+            </div>
+
+            <div class="campo">
+                <label for="cpfPerfil">CPF</label>
+                <input
+                    type="text"
+                    id="cpfPerfil"
+                    value="000.000.000-00"
+                >
+            </div>
+
+            <div class="campo">
+                <label for="telefonePerfil">Telefone</label>
+                <input
+                    type="text"
+                    id="telefonePerfil"
+                    value="(48) 99999-9999"
+                >
+            </div>
+
+            <div class="campo campo-completo">
+                <label for="nascimentoPerfil">
+                    Data de nascimento
+                </label>
+
+                <input
+                    type="date"
+                    id="nascimentoPerfil"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- BOTÕES -->
+        <div class="botoes-editar">
+
+            <button
+                class="btn-cancelar"
+                id="cancelarEditarPerfil"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="btn-salvar"
+                id="salvarEditarPerfil"
+            >
+                Salvar alterações
+            </button>
+
+        </div>
+
+    </div>
+</div>
+    <script src="script.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/modais.js"></script>
 </body>
 </html>
