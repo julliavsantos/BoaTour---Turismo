@@ -73,7 +73,7 @@ Sistema de notificações para apresentar informações importantes ao usuário.
 
 | Tecnologia   | Utilização                            |
 | ------------ | ------------------------------------- |
-| 🧱 HTML5     | Estrutura das páginas                 |
+| 🧱 HTML     | Estrutura das páginas                 |
 | 🎨 CSS3      | Estilização e responsividade          |
 | ⚡ JavaScript | Interações e funcionalidades          |
 | 🐘 PHP       | Desenvolvimento do back-end           |
