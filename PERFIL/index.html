@@ -508,14 +508,22 @@
             </div>
 
             <div class="campo campo-completo">
-                <label for="nascimentoPerfil">
-                    Data de nascimento
-                </label>
+                <label>Data de nascimento</label>
+                 <div class="input-data">
+            <input
+                type="text"
+                id="dataPartida"
+                placeholder="dd/mm/aaaa"
+                maxlength="10"
+                autocomplete="off"
+            >
 
-                <input
-                    type="date"
-                    id="nascimentoPerfil"
-                >
+            <button type="button" class="btn-calendario" id="abrirPartida">
+                <img src="../img/icones/calendario.png" alt="Abrir calendário">
+            </button>
+        </div>
+
+        <div class="calendario" id="calendarioPartida"></div>
             </div>
 
         </div>
@@ -542,8 +550,12 @@
 
     </div>
 </div>
+
+
     <script src="script.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/modais.js"></script>
+    <script src="../js/script.js"></script>
+    
 </body>
 </html>
