@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             botao.innerHTML = "☀️";
 
             if (logo) {
-                logo.src = "img/logo/logo-dark.png";
+                logo.src = "img/logo/logodarkmode.png";
             }
 
             localStorage.setItem("boatour-dark-mode", "ativo");
