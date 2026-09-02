@@ -660,13 +660,13 @@ body, .nav, .perfil-menu, .login, .calendario, .passageiros-menu,
     transition:
         transform 0.25s ease,
         color 0.25s ease;
+    color: var(--text);
 }
 .menu li:hover {
     transform: scale(1.08);
 }
 .menu a {
     text-decoration: none;
-    color: inherit;
 }
 .perfil-overlay {
     position: fixed;

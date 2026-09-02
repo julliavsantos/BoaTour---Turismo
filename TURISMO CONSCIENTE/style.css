@@ -364,3 +364,52 @@ body {
     color: #253e27;
 }
 }
+
+/* ===============================
+   BOATOUR - TEMA / DARK MODE
+   Variáveis ficam aqui porque este
+   arquivo é usado em todas as páginas.
+   =============================== */
+
+
+   
+/* ===============================
+   DARK MODE - PÁGINA PRINCIPAL
+   =============================== */
+body.dark-mode .cont::before {
+    background: linear-gradient(to bottom, transparent, var(--bg-soft));
+}
+
+body.dark-mode .campo input::placeholder,
+body.dark-mode .input-data input::placeholder {
+    color: var(--muted);
+}
+
+body.dark-mode .filtro:hover,
+body.dark-mode .prev:hover,
+body.dark-mode .next:hover {
+    background-color: var(--hover);
+}
+
+body.dark-mode .oferta-detalhes {
+    color: var(--text);
+}
+
+body.dark-mode .fechar-oferta {
+    background: var(--card);
+    color: var(--text);
+}
+
+body.dark-mode .fechar-oferta:hover {
+    background: var(--card);
+}
+
+body.dark-mode .login input {
+    background: var(--card);
+    color: var(--text);
+}
+
+body.dark-mode .banner-btn {
+    background: var(--primary-dark);
+    color: var(--text);
+}
