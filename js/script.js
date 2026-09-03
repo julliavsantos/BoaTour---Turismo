@@ -735,7 +735,16 @@ if (abrirRetorno) {
     abrirRetorno.addEventListener(
         "click",
         function (evento) {
+
+            // Não permite abrir o calendário se estiver em "Somente ida"
+            if (soIda && soIda.checked) {
+                evento.preventDefault();
+                evento.stopPropagation();
+                return;
+            }
+
             evento.stopPropagation();
+
             calendarioPartida.classList.remove(
                 "aberto"
             );
@@ -745,41 +754,33 @@ if (abrirRetorno) {
                     "aberto"
                 )
             ) {
-
                 calendarioRetorno.classList.remove(
                     "aberto"
                 );
                 return;
             }
 
-
             const data =
                 converterData(
                     dataRetorno.value
                 );
 
-
             if (data) {
-
                 calendarioAtual.retorno =
                     new Date(
                         data.getFullYear(),
                         data.getMonth(),
                         1
                     );
-
             }
-
 
             criarCalendario("retorno");
 
             calendarioRetorno.classList.add(
                 "aberto"
             );
-
         }
     );
-
 }
 
 //DIGITAÇÃO DA DATA
@@ -1131,12 +1132,26 @@ function atualizarViagem() {
 
     if (soIda.checked) {
 
-        // Mantém o campo visível, mas desabilitado
+        // Desativa visualmente todo o campo de retorno
         campoRetorno.classList.add("desativado");
 
+        // Desativa o input
         if (dataRetorno) {
             dataRetorno.value = "";
             dataRetorno.disabled = true;
+        }
+
+        // Desativa o botão/ícone do calendário
+        if (abrirRetorno) {
+            abrirRetorno.classList.add("desativado");
+
+            // Se for um <button>, também desabilita de verdade
+            if (
+                abrirRetorno.tagName === "BUTTON" ||
+                abrirRetorno.tagName === "INPUT"
+            ) {
+                abrirRetorno.disabled = true;
+            }
         }
 
         // Fecha o calendário de retorno
@@ -1151,6 +1166,18 @@ function atualizarViagem() {
 
         if (dataRetorno) {
             dataRetorno.disabled = false;
+        }
+
+        // Reativa o botão/ícone do calendário
+        if (abrirRetorno) {
+            abrirRetorno.classList.remove("desativado");
+
+            if (
+                abrirRetorno.tagName === "BUTTON" ||
+                abrirRetorno.tagName === "INPUT"
+            ) {
+                abrirRetorno.disabled = false;
+            }
         }
     }
 }
