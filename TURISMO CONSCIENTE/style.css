@@ -363,7 +363,6 @@ body {
     background: white;
     color: #253e27;
 }
-}
 
 /* ===============================
    BOATOUR - TEMA / DARK MODE
@@ -371,7 +370,371 @@ body {
    arquivo é usado em todas as páginas.
    =============================== */
 
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+html,
+body {
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--bg-soft);
+}
+.cont {
+    margin: 0;
+    padding: 0; 
+    height: 80vh;       
+    min-height: 100%;
+    background-image: url("../img/banners/fundo03darkmode.png");
+    background-size: cover;        
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+.cont::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+        #f5f5f5
+    );
+    z-index: 5;
+    pointer-events: none;
+    }
+.container {
+    width: 100%;
+    height: 60vh;
+    min-height: 0;
+    padding-bottom: 30px;
+    position: relative;
+}
+.container {
+    width: 800px;
+    height: 40vh;
+    padding: 120px 0 10px 70px;
+    align-items: end;
+} 
+.container h1 {
+    width: 500px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--text);
+}
+.container p {
+    width: 550px;
+    height: 25vh;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 23px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+.ODS{
+    width: 500px;
+    height: 30vh;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    align-items: flex-start;
+}
+.ODS img{
+    width: 200px;
+    height: auto;
+}
+.container02{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    text-align: center;
+    align-items: flex-end;
+    justify-content: center;
+}
+.container02 h1 {
+    width: auto;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0px;
+    color: white;
+}
+.qualidades {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 30px;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--bg-soft);
+}
+.qualidade {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 18px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+.qualidade h3 {
+    font-size: 18px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text);
+}
+.qualidade p {
+    font-size: 13px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text);
+}
+.qualidade:hover {
+    transform: translateY(-4px);
+    background: #253e27;
+    color: white;
+}
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e9ebee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+.icon img {
+    width: 50px;
+    height: 50px;
+}
+.linha {
+    width: 96%;
+    min-height: 40vh;
+    margin: 10px auto;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: 270px minmax(400px, 1fr) 500px;
+    align-items: end;
+    column-gap: 30px;
+    border-radius: 24px;
+    box-sizing: border-box;
+}
+.imgods {
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgods img {
+    width: 270px;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.textoods {
+    width: 600px;
+    max-width: 600px;
+    text-align: left;
+}
+.textoods h1 {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+.textoods p {
+    width: 100%;
+    max-width: 600px;
+    margin: 0px 0 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: var(--text);
+}
+.textoods h3 {
+    margin: 30px 0 5px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text);
+}
+.contribuentes {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 0px;
+}
+.contribuentes img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.contribuentes p {
+    width: auto;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: var(--text)
+}
+.imagemturismo {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+}
+.imagemturismo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.dicas{
+    width: 96%;
+    height: auto;
+    background-color: #17331b;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding: 30px 20px;
+    border-radius: 20px;
+}
+.dicastext{
+    width: 100%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: flex-end;
+    justify-content: center;
+}
+.dicastext h1 {
+    width: auto;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0px;
+    color:var(--text)
+}
+.dica-galeria{
+    width: 100%;
+    height: auto;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.dica{
+    width: 100%;
+    height: 20vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.dica img{
+    width: 130px;
+    height: auto;
+}
+.dica p{
+    width: 70%;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--text)
+}
+.banner {
+    width: 96%;
+    height: 20vh;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("../img/banners/bannerconsciente.jpg");
+    border-radius: 30px;
+    margin: 50px auto 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    box-sizing: border-box;
+}
+.banner-texto {
+    width: 55%;
+    color: white;
+}
+.banner h1 {
+    margin: 0 0 10px;
+    font-size: 40px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: left;
+}
+.banner p {
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-align: left;
+}
+.banner-btn {
+    border: none;
+    background: #253e27;
+    color:white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 17px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: 0.3s;
+}
+.banner-btn:hover {
+    transform: scale(1.05);
+    background: white;
+    color: #253e27;
+}
    
 /* ===============================
    DARK MODE - PÁGINA PRINCIPAL
@@ -412,4 +775,5 @@ body.dark-mode .login input {
 body.dark-mode .banner-btn {
     background: var(--primary-dark);
     color: var(--text);
+}
 }
