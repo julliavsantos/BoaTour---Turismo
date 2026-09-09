@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botao.innerHTML = "☀️";
 
         if (logo) {
-            logo.src = "img/logo/logodarkmode.png";
+            logo.src = "../img/logo/logodarkmode.png";
         }
 
     } else {
