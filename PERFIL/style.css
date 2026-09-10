@@ -112,11 +112,11 @@ body {
     font-size: 17px;
     flex-shrink: 0;
 }
-.sidebar-links a > span > img{
+.sidebar-links a > span > img {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: var(--text);
+    background: #d8e6e7;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -700,4 +700,175 @@ body {
     height: 20px;
     object-fit: contain;
     display: block;
+}
+.botoesSair {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.botoesSair button {
+    flex: 1;
+}
+
+.btnCancelar {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #e9ebee;
+    color: #073b40;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btnCancelar:hover {
+    background: #d8e6e7;
+}
+
+/* =========================================
+   MODAL - SAIR DA CONTA
+   ========================================= */
+
+/* Botões de confirmação/cancelamento */
+
+.botoesSair {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.botoesSair button {
+    flex: 1;
+    height: 42px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* BOTÃO CANCELAR */
+
+.btnCancelar {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border) !important;
+}
+
+.btnCancelar:hover {
+    background: var(--hover);
+    transform: translateY(-1px);
+}
+
+
+/* BOTÃO SAIR DA CONTA */
+
+/* =========================================
+   MODAL - SAIR DA CONTA
+   ========================================= */
+
+.botoesSair {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.botoesSair button {
+    width: 100%;
+    height: 42px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Botão cancelar */
+.btnCancelar {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border) !important;
+}
+
+.btnCancelar:hover {
+    background: var(--hover);
+    transform: translateY(-1px);
+}
+
+/* Botão sair */
+.botoesSair .btnLogin {
+    margin: 0;
+}
+
+/* PRIMEIRO MODAL - deixar menor */
+#modalSairConta .login {
+    min-height: auto;
+    height: auto;
+    padding: 30px;
+}
+
+/* SEGUNDO MODAL */
+#modalSenhaSairConta .login {
+    min-height: 300px;
+}
+
+#modalSenhaSairConta .btnLogin {
+    margin-top: 12px;
+}
+
+/* Dark mode */
+body.dark-mode .btnCancelar {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border) !important;
+}
+
+body.dark-mode .btnCancelar:hover {
+    background: var(--hover);
+}
+
+
+/* =========================================
+   MODAL DA SENHA
+   ========================================= */
+
+#modalSenhaSairConta .login {
+    min-height: 300px;
+}
+
+#modalSenhaSairConta .btnLogin {
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+body.dark-mode .btnCancelar {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border) !important;
+}
+
+body.dark-mode .btnCancelar:hover {
+    background: var(--hover);
 }

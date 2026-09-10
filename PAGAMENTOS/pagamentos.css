@@ -12,7 +12,7 @@ html {
 }
 body {
     min-height: 100vh;
-    background: var(--bg-soft);
+    background: var(--bg);
     color: var(--text);
 }
 .pagamentos-space{
@@ -26,10 +26,12 @@ body {
 .titulo-pagina {
     margin-bottom: 35px;
 }
-.titulo-pagina span {
+.titulo-pagina span a {
     color: var(--muted);
     font-size: 13px;
     font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
 }
 .titulo-pagina h1 {
     margin-top: 7px;
@@ -333,4 +335,5 @@ body {
 .btn-fechar:hover {
     background-color: #f3f6f6;
 }
+
 }

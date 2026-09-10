@@ -12,7 +12,7 @@
     <div class="nav">
 
     <div class="logo">
-        <img id="logoBoatour" src="img/logo/logo.png" alt="BOATOUR">
+        <img id="logoBoatour" src="../img/logo/logo.png" alt="BOATOUR">
     </div>
 
     <ul class="menu">
@@ -121,7 +121,7 @@
                         <strong>Favoritos</strong>
                     </div>
                 </a>
-                <a href="#">
+                <a href="../PAGAMENTOS/index.html">
                     <span><img src="../img/icones/cartao2.png" alt=""></span>
                     <div>
                         <strong>Pagamentos</strong>
@@ -139,7 +139,7 @@
                         <strong>Configurações</strong>
                     </div>
                 </a>
-                <a href="#">
+                <a href="#" id="btnSairConta">
                     <span><img src="../img/icones/sair.png" alt=""></span>
                     <div>
                         <strong>Sair</strong>
@@ -549,6 +549,49 @@
 
         </div>
 
+    </div>
+</div>
+
+<!-- MODAL: CONFIRMAR SAÍDA -->
+<div class="modal-login" id="modalSairConta">
+    <div class="login">
+        <button class="fechar" id="fecharSairConta">&times;</button>
+
+        <h2>Sair da conta <span>BoaTour</span></h2>
+
+        <p>Tem certeza que deseja sair da sua conta?</p>
+
+        <div class="botoesSair">
+            <button class="btnCancelar" id="cancelarSairConta">
+                Cancelar
+            </button>
+
+            <button class="btnLogin" id="continuarSairConta">
+                Sair da conta
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL: CONFIRMAR SENHA -->
+<div class="modal-login" id="modalSenhaSairConta">
+    <div class="login">
+        <button class="fechar" id="fecharSenhaSairConta">&times;</button>
+
+        <h2>Confirmar saída <span>BoaTour</span></h2>
+
+        <p>Digite sua senha para confirmar a saída da conta.</p>
+
+        <input
+            type="password"
+            id="senhaSairConta"
+            placeholder="Senha"
+        >
+
+        <button class="btnLogin" id="confirmarSairConta">
+            Confirmar saída
+        </button>
     </div>
 </div>
 
