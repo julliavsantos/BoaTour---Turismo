@@ -7,15 +7,13 @@
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     min-height: 100vh;
-    background: #f5f7f7;
-    color: black;
+    background: var(--bg-soft);
+    color: var(--text);
 }
 .pagamentos-space{
     height: 70px;
@@ -29,20 +27,19 @@ body {
     margin-bottom: 35px;
 }
 .titulo-pagina span {
-    color: #789496;
+    color: var(--muted);
     font-size: 13px;
     font-weight: 600;
 }
 .titulo-pagina h1 {
     margin-top: 7px;
-    color: black;
+    color: var(--text);
     font-size: 34px;
     font-weight: 750;
 }
 .titulo-pagina p {
     margin-top: 8px;
-
-    color: #718183;
+    color: var(--muted);
     font-size: 14px;
 }
 .resumo-pagamentos {
@@ -57,8 +54,8 @@ body {
     display: flex;
     align-items: center;
     gap: 17px;
-    background-color: #ffffff;
-    border: 1px solid #e5eaea;
+    background-color: var(--card);
+    border: 1px solid var(--border);
     border-radius: 14px;
     box-shadow: 0 5px 18px rgba(39, 68, 70, 0.04);
 }
@@ -94,11 +91,11 @@ body {
 }
 .resumo-card p {
     margin-bottom: 5px;
-    color: #7b898a;
+    color: var(--text);
     font-size: 12px;
 }
 .resumo-card h2 {
-    color: black;
+    color: var(--text);
     font-size: 21px;
     font-weight: 700;
 }
@@ -112,16 +109,16 @@ body {
     justify-content: space-between;
 }
 .cabecalho-historico h2 {
-    color: black;
+    color: var(--text);
     font-size: 21px;
     font-weight: 700;
 }
 .cabecalho-historico select {
     padding: 11px 15px;
-    border: 1px solid #dce3e3;
+    border: 1px solid var(--border);
     border-radius: 8px;
-    background-color: #ffffff;
-    color: black;
+    background-color: var(--surface-strong);
+    color: var(--text);
     outline: none;
     cursor: pointer;
 }
@@ -130,8 +127,8 @@ body {
     min-height: 150px;
     margin-bottom: 17px;
     display: flex;
-    background-color: #ffffff;
-    border: 1px solid #e4e9e9;
+    background-color: var(--card);
+    border: 1px solid var(--border);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 5px 18px rgba(39, 68, 70, 0.035);
@@ -163,16 +160,16 @@ body {
 .info-item span {
     display: block;
     margin-bottom: 5px;
-    color: #8a9798;
+    color: var(--text);
     font-size: 11px;
 }
 .pagamento-destino h3 {
-    color: black;
+    color: var(--text);
     font-size: 17px;
     font-weight: 700;
 }
 .info-item strong {
-    color: black;
+    color: var(--text);
     font-size: 13px;
     font-weight: 600;
 }
@@ -184,30 +181,30 @@ body {
     font-weight: 700;
 }
 .status.aprovado {
-    background-color: #e7f3ed;
+    background-color: var(--surface-strong);
     color: #347154;
 }
 .status.pendente {
-    background-color: #fff3dd;
+    background-color:  var(--surface-strong);
     color: #9b6a25;
 }
 .status.cancelado {
-    background-color: #f8e7e7;
+    background-color:  var(--surface-strong);
     color: #a14d4d;
 }
 .btn-detalhes {
     padding: 10px 15px;
-    border: 1px solid #355f63;
+    border: 1px solid var(--accent);
     border-radius: 8px;
     background-color: transparent;
-    color: #29494c;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     transition: 0.2s ease;
 }
 .btn-detalhes:hover {
-    background-color: #355f63;
+    background-color: var(--accent);
     color: #ffffff;
 }
 .modal-overlay {
@@ -232,7 +229,7 @@ body {
     width: 100%;
     max-width: 520px;
     padding: 30px;
-    background-color: #ffffff;
+    background-color: var(--card);
     border-radius: 17px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
     transform: translateY(15px);
@@ -249,14 +246,14 @@ body {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background-color: #f1f4f4;
-    color: #526769;
+    background-color: var(--card);
+    color: var(--text);
     font-size: 20px;
     cursor: pointer;
     transition: 0.2s ease;
 }
 .fechar-modal:hover {
-    background-color: #e3e9e9;
+    background-color: var(--card);
 }
 .modal-cabecalho {
     display: flex;
@@ -279,12 +276,12 @@ body {
     height: 40px;
 }
 .modal-cabecalho span {
-    color: #829091;
+    color: var(--text);
     font-size: 11px;
 }
 .modal-cabecalho h2 {
     margin-top: 3px;
-    color: #29494c;
+    color: var(--text);
     font-size: 20px;
 }
 .detalhes {
@@ -298,16 +295,15 @@ body {
     border-bottom: 1px solid #e9eeee;
 }
 .detalhe span {
-    color: #7c898a;
+    color: var(--text);
     font-size: 12px;
 }
 .detalhe strong {
-    color: #354f51;
+    color: var(--text);
     font-size: 13px;
 }
 .modal-acoes {
     margin-top: 25px;
-
     display: flex;
     gap: 10px;
 }

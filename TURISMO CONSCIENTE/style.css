@@ -41,7 +41,7 @@ body.dark-mode {
 --card: #1e251f;
 --text: #f1f4f1;
 --muted: #aeb7ae;
---primary2: #1c281e;
+--primary2: #536d53;
 --primary-dark: #dce8dc;
 --hover2: #dce8dc;
 --white: #ffffff;
@@ -62,7 +62,7 @@ position: relative;
 transition: background-image 0.3s ease;
 }
 body.dark-mode .cont {
-background-image: url("../img/banners/fundo03darkmode.png");
+background-image: url("../img/banners/fundo02darkmode.png");
 }
 .cont::before {
 content: "";

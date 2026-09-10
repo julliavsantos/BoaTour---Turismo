@@ -158,7 +158,6 @@ body, .nav, .perfil-menu, .login, .calendario, .passageiros-menu,
     display: flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
     transition: 
         transform 0.25s ease,

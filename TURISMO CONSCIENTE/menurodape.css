@@ -5,6 +5,8 @@
     --bg-soft: #f5f5f5;
     --card: #ffffff;
     --menu-text: #253e27;
+    --menu-text-span: #6daa75;
+    --menu-text-strong: #2b4e2f;
     --menu-bg: rgba(255, 255, 255, 0.82);
     --menu-hover: #1e3921;
     --profile-bg: #f5f7f5;
@@ -30,6 +32,8 @@ body.dark-mode {
     --bg-soft: #151d20;
     --card: #202a2d;
     --menu-text: #ffffff;
+    --menu-text-span: #6daa75;
+    --menu-text-strong: rgb(255, 255, 255);
     --menu-bg: rgba(18, 23, 18, 0.92);
     --menu-hover: #ffffff;
     --profile-bg: #1e251f;
@@ -105,6 +109,9 @@ body.dark-mode {
 .menu a {
     text-decoration: none;
     color: inherit;
+}
+#btnEntrar{
+    color: var(--menu-text-span);
 }
 .perfil-overlay {
     position: fixed;
@@ -247,7 +254,7 @@ body.dark-mode {
     gap: 15px;
     padding: 15px;
     text-decoration: none;
-    color: #253e27;
+    color: var(--footer-bg-mid);
     border-radius: 10px;
     transition: .2s;
 }
@@ -259,8 +266,8 @@ body.dark-mode {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #d8e6e7;
-    color: #1e3921;
+    background:#c2d3c3;
+    color: var(--text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,11 +278,12 @@ body.dark-mode {
     display: block;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
+    color: var(--menu-text-strong);
 }
 .perfil-links small {
     display: block;
     margin-top: 3px;
-    color: #777;
+    color: var(--text);
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 11px;
 }
@@ -612,10 +620,6 @@ body.dark-mode .nav.scrolled {
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.35);
 }
 
-body.dark-mode .btn-perfil {
-    background: var(--);
-}
-
 body.dark-mode .btn-perfil:hover {
     background: #2b393c;
 }
@@ -630,7 +634,7 @@ body.dark-mode .perfil-links a:hover {
 }
 
 body.dark-mode .perfil-links a > span {
-    background: #2b393c;
+    background: #c2d3c3;
     color: var(--accent);
 }
 
