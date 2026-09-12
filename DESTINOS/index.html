@@ -96,24 +96,38 @@
             </div>
         </div>
 
-        <div class="container03" id="ofertas">
-        <p>Ofertas imperdíveis<br>para sua próxima viagem <br>
-        <span>Aproveite preços especiais e parcelamentos facilitados!</span></p>
-    </div>   
+        <div class="topo-destinos">
+    <div class="container03" id="ofertas">
+        <p>Destinos incríveis<br>
+            para você explorar <br>
+    </div>
+
+    <div class="campo-partida">
+        <input type="text" id="partida" placeholder="Buscar destinos..." autocomplete="off">
+        <div class="sugestoes" id="sugestoesPartida"></div>
+    </div>
+</div>
+
 
     <div class="filtros">
 
     <button class="filtro ativo" data-filtro="todas">
-        Todas as ofertas
+        Todos
     </button>
-    <button class="filtro" data-filtro="nacional">
-        Nacionais
+    <button class="filtro" data-filtro="praias">
+        Praias
     </button>
-    <button class="filtro" data-filtro="internacional">
-        Internacionais
+    <button class="filtro" data-filtro="cidades">
+        Cidades
     </button>
-    <button class="filtro" data-filtro="pacote">
-        Pacotes
+    <button class="filtro" data-filtro="montanhas">
+        Montanhas
+    </button>
+    <button class="filtro" data-filtro="aventura">
+        Aventura
+    </button>
+    <button class="filtro" data-filtro="cultura">
+        Cultura
     </button>
 
 </div>
@@ -126,14 +140,12 @@
             data-destaque="sim">
                 <div class="imagem-oferta">
                     <img src="img/ofertas/cancun.jpg" alt="Cancún">
-                    <span class="desconto">-30%</span>
                 </div>
     
                 <div class="info-oferta">
                     <h3>Cancún All Inclusive</h3>
                     <p>7 dias • Voo • Hotel</p>
                     <div class="precos">
-                        <span class="preco-antigo">R$ 4.410</span>
                         <strong>R$ 3.672</strong>
                     </div>
                 </div>
@@ -144,14 +156,12 @@
      data-destaque="sim">
                 <div class="imagem-oferta">
                     <img src="img/ofertas/caribe.jpg" alt="Cruzeiro">
-                    <span class="desconto">-17%</span>
                 </div>
     
                 <div class="info-oferta">    
                     <h3>Cruzeiro pelo Caribe</h3>    
                     <p>6 dias • Tudo incluso</p>    
                     <div class="precos">
-                        <span class="preco-antigo">R$ 6.000</span>
                         <strong>R$ 4.497</strong>
                     </div>
                 </div>
@@ -162,14 +172,12 @@
      data-destaque="sim">
                 <div class="imagem-oferta">
                     <img src="img/ofertas/europa.jpg" alt="Europa">
-                    <span class="desconto">-25%</span>
                 </div>
 
                 <div class="info-oferta">
                     <h3>Europa Essencial</h3>
                     <p>10 dias • 4 países</p>
                     <div class="precos">
-                        <span class="preco-antigo">R$ 7.999</span>
                         <strong>R$ 5.993</strong>
                     </div>
                 </div>
@@ -714,5 +722,6 @@
     <script src="../js/menu.js"></script>
     <script src="../js/modais.js"></script>
     <script src="../js/ofertas.js"></script>
+    <script src="../js/darkmodedemais.js"></script>
 </body>
 </html>

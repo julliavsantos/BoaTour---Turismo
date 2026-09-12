@@ -18,12 +18,21 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100%;
-    background: #f3f4f7;
+    background: var(--bg);
 }
-.container03 {
+.topo-destinos {
     width: 100%;
     height: 20vh;
-    padding: 0 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 150px 0 25px;
+    background: var(--bg);
+}
+.container03 {
+    width: 60%;
+    height: 20vh;
+    padding: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -39,11 +48,41 @@ body {
     line-height: 1.1;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
-.container03 span {
-    font-size: 18px;
-    font-weight: 300;
+.campo-partida {
+    position: relative;
+    width: 400px;
+    margin-bottom: 25px;
+}
+.campo-partida input {
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-strong);
     color: var(--text);
+    font-size: 14px;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    outline: none;
+    transition: 0.2s;
+}
+.campo-partida input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(81, 141, 147, 0.12);
+}
+.campo-partida input::placeholder {
+    color: #999;
+}
+.sugestoes {
+    position: absolute;
+    top: 82px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    z-index: 100;
 }
 .filtros {
     height: 7vh;
