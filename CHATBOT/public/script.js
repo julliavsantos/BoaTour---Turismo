@@ -1,16 +1,17 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+
     const input = document.getElementById("mensagem");
     const chat = document.getElementById("chat");
+
 
     window.enviar = async function () {
 
         const mensagem = input.value.trim();
+
         if (!mensagem) {
             return;
         }
 
-        // MENSAGEM DO USUÁRIO
         chat.innerHTML += `
             <p class="mensagem usuario">
                 <strong>Você:</strong>
@@ -20,12 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         input.value = "";
 
-        // Faz o chat descer
         chat.scrollTop = chat.scrollHeight;
 
         try {
 
-            // ENVIA PARA O BACKEND
             const resposta = await fetch("/chat", {
                 method: "POST",
 
@@ -38,14 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             });
 
-            // Verifica resposta do servidor
             if (!resposta.ok) {
                 throw new Error("Erro na resposta do servidor");
             }
 
             const dados = await resposta.json();
 
-            // RESPOSTA DA JULIANINHA
             chat.innerHTML += `
                 <p class="mensagem bot">
                     <strong>Julianinha:</strong>
@@ -57,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.error("Erro:", erro);
 
-            // ERRO DO BOT
             chat.innerHTML += `
                 <p class="mensagem bot">
                     <strong>Julianinha:</strong>
@@ -66,11 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }
 
-        // Desce para a mensagem mais recente
         chat.scrollTop = chat.scrollHeight;
     };
 
-    // ENTER ENVIA A MENSAGEM
+
     input.addEventListener("keydown", function (event) {
 
         if (event.key === "Enter") {
@@ -79,12 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             enviar();
         }
-
     });
 
-
-
-    // BOTÕES DE OPÇÕES RÁPIDAS
     const botoesRapidos = document.querySelectorAll(".opcao-rapida");
 
     botoesRapidos.forEach((botao) => {
@@ -99,11 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     });
-
-
-    // =========================
-    // SLIDER DAS IMAGENS
-    // =========================
 
     const imagens = document.querySelectorAll(".imagem");
 
@@ -127,4 +113,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
-

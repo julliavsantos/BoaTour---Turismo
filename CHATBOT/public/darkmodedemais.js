@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botao.innerHTML = "☀️";
 
         if (logo) {
-            logo.src = "../img/logo/logodarkmode.png";
+            logo.src = "../../img/logo/logodarkmode.png";
         }
 
     } else {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             botao.innerHTML = "☀️";
 
             if (logo) {
-                logo.src = "../img/logo/logodarkmode.png";
+                logo.src = "../../img/logo/logodarkmode.png";
             }
 
             localStorage.setItem("boatour-dark-mode", "ativo");
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             botao.innerHTML = "🌙";
 
             if (logo) {
-                logo.src = "../img/logo/logo.png";
+                logo.src = "../../img/logo/logo.png";
             }
 
             localStorage.setItem("boatour-dark-mode", "desativado");
