@@ -64,7 +64,7 @@ body {
     background: var(--bg-soft)
 }
 .fundo {
-    width: 90%;
+    width: 95%;
     height: 90vh;
     margin: 10vh auto 10vh;
     padding-top: 30px;
@@ -78,7 +78,7 @@ body {
     overflow: hidden;
 }
 body.dark-mode .fundo {
-    width: 90%;
+    width: 95%;
     height: 90vh;
     margin: 10vh auto 10vh;
     padding-top: 30px;
@@ -281,7 +281,7 @@ body.dark-mode .fundo {
 }
 .folder {
     width: 35%;
-    height: 30vh;
+    height: 26vh;
     background-color: var(--card);
     margin-left: auto;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
@@ -294,8 +294,10 @@ body.dark-mode .fundo {
 }
 .imagem {
     position: absolute;
+    max-width: 900px;
     width: 98%;
-    height: 98%;
+    height: 95%;
+    max-height: 30vh;
     object-fit: cover;
     border: 1px solid var(--border);
     border-radius: 20px;
@@ -308,27 +310,29 @@ body.dark-mode .fundo {
 }
 .menuLateral {
     width: 35%;
-    height: 38vh;
+    height: 40vh;
     background-color: var(--card);
     margin-left: auto;
     position: absolute;
     right: 0;
-    top: 32vh;
+    bottom: 0;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
     border-radius: 25px;
+    padding: 5px;
 }
 .opcoes-rapidas {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 13px;
 }
 .opcoes-rapidas h3 {
     color: var(--text);
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 8px;
     margin-left: 25px;
     margin-top: 23px;
     font-weight: 800;
+    padding-bottom: 7px;
 }
 .opcao-rapida {
     width: 90%;
