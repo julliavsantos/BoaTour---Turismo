@@ -169,6 +169,7 @@ body.dark-mode .cont {
 }
 .sugestao:hover {
     background-color: var(--hover);
+    transition: background-color 0.25s ease;
 }
 .linha img:not(.busca) {
     width: 65px;
@@ -196,7 +197,7 @@ body.dark-mode .cont {
     transition: 0.2s ease;
 }
 .linha a:hover .busca {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 #campoRetorno.desativado {
     opacity: 0.5;
@@ -492,7 +493,7 @@ body.dark-mode .cont {
     background: var(--accent);
     border-color: var(--accent);
     color: var(--card);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 .contador span {
     min-width: 18px;
@@ -814,8 +815,8 @@ body.dark-mode .cont {
     cursor: pointer;
 }
 .card-oferta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
 }
 .imagem-oferta {
     height: 160px;

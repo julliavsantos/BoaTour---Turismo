@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modoSalvo === "ativo") {
 
         document.body.classList.add("dark-mode");
-        botao.innerHTML = "☀️";
+        botao.innerHTML = 
+        ` <img src="img/icones/sol.png" alt="Modo claro"> `;
 
         if (logo) {
             logo.src = "img/logo/logodarkmode.png";
@@ -26,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } else {
 
-        botao.innerHTML = "🌙";
+        botao.innerHTML = 
+        ` <img src="img/icones/lua.png" alt="Modo claro"> `
+        ;
 
     }
 
@@ -44,7 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (modoEscuro) {
 
-            botao.innerHTML = "☀️";
+            botao.innerHTML = 
+             ` <img src="img/icones/sol.png" alt="Modo escuro"> `
+            ;
 
             if (logo) {
                 logo.src = "img/logo/logodarkmode.png";
@@ -54,7 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else {
 
-            botao.innerHTML = "🌙";
+            botao.innerHTML = 
+             ` <img src="img/icones/lua.png" alt="Modo escuro"> `
+            ;
 
             if (logo) {
                 logo.src = "img/logo/logo.png";

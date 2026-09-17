@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@media screen and (min-width: 1440px) {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+html,
+body {
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--bg);
+}
+.container{
+    width: 100%;
+    height: 21vh;
+    padding-top: 15vh;
+    padding-left: 60px;
+}
+.linha{
+    width: 25%;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.linha img{
+    width: 75px;
+    height: auto;
+}
+.linha span {
+    height: 2px;
+    background-color: #2f8588;
+    flex: 1;
+}
+.linha p {
+    margin: 0;
+    color: #2f8588;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.titulo{
+    width: 100%;
+    height: 20vh;
+    padding-left: 70px;
+}
+.titulo h1{
+    width: 40%;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--text);
+}
+.titulo p{
+    width: 45%;
+    margin-top: 1vh;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+.conteudo{
+    width: 92%;
+    height: 100vh;
+    background-color: var(--surface);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 40px;
+    border: 1.5px solid var(--border);
+}
+}

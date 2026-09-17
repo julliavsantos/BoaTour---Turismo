@@ -658,28 +658,32 @@ body.dark-mode .copy {
     border: none;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.75);
-    color: #1e3921;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    line-height: 1;
     cursor: pointer;
-    transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
 }
-
+.dark-mode-btn img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: transform .25s ease;
+}
 .dark-mode-btn:hover {
     transform: scale(1.06);
     background: white;
     box-shadow: 0 4px 15px rgba(0,0,0,.12);
 }
-
+.dark-mode-btn:hover img {
+    transform: scale(1.1);
+}
 body.dark-mode .dark-mode-btn {
     background: #202a2d;
-    color: #f1f5f5;
 }
-
 body.dark-mode .dark-mode-btn:hover {
     background: #2b393c;
 }
-
