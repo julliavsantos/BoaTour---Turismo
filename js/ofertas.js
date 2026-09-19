@@ -1,102 +1,299 @@
-//FILTRO DE OFERTAS
-const filtros =
-    document.querySelectorAll(".filtro");
+// ==========================================
+// OFERTAS
+// ==========================================
 
-const ofertas =
-    document.querySelectorAll(".card-oferta");
+fetch('/ofertas')
+
+    .then(response => response.json())
+
+    .then(ofertas => {
+
+        var lista =
+            document.getElementById('listaOfertas');
+
+        lista.innerHTML = '';
 
 
-function filtrarOfertas(filtroSelecionado) {
+        // ======================================
+        // CRIA OS CARDS
+        // ======================================
 
-    ofertas.forEach(function (oferta) {
+        ofertas.forEach(oferta => {
 
-        const categoria =
-            oferta.getAttribute(
-                "data-categoria"
+            // Calcula o desconto
+            var desconto = Math.round(
+                (
+                    (oferta.preco_anterior -
+                    oferta.preco_atual)
+                    /
+                    oferta.preco_anterior
+                ) * 100
             );
 
-        const destaque =
-            oferta.getAttribute(
-                "data-destaque"
-            );
+
+            // Define a categoria
+            var categoria = '';
+
+            if (oferta.pacote) {
+
+                categoria = 'pacote';
+
+            } else if (oferta.nacional) {
+
+                categoria = 'nacional';
+
+            } else if (oferta.internacional) {
+
+                categoria = 'internacional';
+
+            }
 
 
-        if (
-            filtroSelecionado === "todas"
+            // Define se é destaque
+            var destaque =
+                oferta.destaque ? 'sim' : 'nao';
+
+
+            // ==================================
+            // CRIA O CARD
+            // ==================================
+
+            lista.innerHTML += `
+
+                <div
+    class="card-oferta"
+    data-categoria="${categoria}"
+    data-destaque="${destaque}"
+    data-descricao="${oferta.descricao || ''}"
+    data-passagem="${oferta.passagem_aerea}"
+    data-hospedagem="${oferta.hospedagem}"
+    data-passeios="${oferta.passeios}"
+    data-dias="${oferta.dias}"
+>
+
+                    <div class="imagem-oferta">
+
+                        <img
+                            src="../${oferta.imagem}"
+                            alt="${oferta.titulo}"
+                        >
+
+                        <span class="desconto">
+                            -${desconto}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-oferta">
+
+                        <h3>
+                            ${oferta.titulo}
+                        </h3>
+
+
+                        <p>
+                            ${oferta.dias} dias
+                            ${oferta.passagem_aerea ? ' • Voo' : ''}
+                            ${oferta.hospedagem ? ' • Hotel' : ''}
+                            ${oferta.passeios ? ' • Passeios' : ''}
+                        </p>
+
+
+                        <div class="precos">
+
+                            <span class="preco-antigo">
+
+                                R$ ${Number(
+                                    oferta.preco_anterior
+                                ).toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 2
+                                })}
+
+                            </span>
+
+
+                            <strong>
+
+                                R$ ${Number(
+                                    oferta.preco_atual
+                                ).toLocaleString('pt-BR', {
+                                    minimumFractionDigits: 2
+                                })}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+        // ======================================
+        // FILTROS
+        // ======================================
+
+        const filtros =
+            document.querySelectorAll('.filtro');
+
+
+        const cards =
+            document.querySelectorAll('.card-oferta');
+
+
+        function filtrarOfertas(
+            filtroSelecionado
         ) {
 
-            // "Todas" mostra apenas os destaques
+            cards.forEach(function(oferta) {
 
-            if (destaque === "sim") {
+                const categoria =
+                    oferta.getAttribute(
+                        'data-categoria'
+                    );
 
-                oferta.style.display = "";
+                const destaque =
+                    oferta.getAttribute(
+                        'data-destaque'
+                    );
 
-            } else {
 
-                oferta.style.display = "none";
+                // ==============================
+                // TODAS AS OFERTAS
+                // ==============================
 
-            }
+                if (
+                    filtroSelecionado === 'todas'
+                ) {
 
-        } else {
+                    // "Todas" mostra somente
+                    // as ofertas em destaque
 
-            // Categoria mostra todas daquela categoria
+                    if (
+                        destaque === 'sim'
+                    ) {
 
-            if (
-                categoria === filtroSelecionado
-            ) {
+                        oferta.style.display = '';
 
-                oferta.style.display = "";
+                    } else {
 
-            } else {
+                        oferta.style.display = 'none';
 
-                oferta.style.display = "none";
+                    }
 
-            }
+                }
+
+
+                // ==============================
+                // CATEGORIAS
+                // ==============================
+
+                else {
+
+                    if (
+                        categoria ===
+                        filtroSelecionado
+                    ) {
+
+                        oferta.style.display = '';
+
+                    } else {
+
+                        oferta.style.display = 'none';
+
+                    }
+
+                }
+
+            });
 
         }
 
-    });
 
-}
+        // ======================================
+        // CLIQUE NOS FILTROS
+        // ======================================
 
-//CLIQUE NOS FILTROS
-filtros.forEach(function (filtro) {
+        filtros.forEach(function(filtro) {
 
-    filtro.addEventListener(
-        "click",
-        function () {
+            filtro.addEventListener(
+                'click',
+                function() {
 
-            // Remove ativo de todos
-            filtros.forEach(
-                function (botao) {
+                    filtros.forEach(
+                        function(botao) {
 
-                    botao.classList.remove(
-                        "ativo"
+                            botao.classList.remove(
+                                'ativo'
+                            );
+
+                        }
+                    );
+
+
+                    this.classList.add(
+                        'ativo'
+                    );
+
+
+                    const filtroSelecionado =
+                        this.getAttribute(
+                            'data-filtro'
+                        );
+
+
+                    filtrarOfertas(
+                        filtroSelecionado
                     );
 
                 }
             );
 
-            // Ativa o clicado
-            this.classList.add(
-                "ativo"
+        });
+
+
+        // ======================================
+        // FILTRO INICIAL
+        // ======================================
+
+        filtrarOfertas('todas');
+
+    })
+
+
+    // ==========================================
+    // ERRO
+    // ==========================================
+
+    .catch(error => {
+
+        console.log(
+            'Erro ao carregar ofertas:',
+            error
+        );
+
+
+        var lista =
+            document.getElementById(
+                'listaOfertas'
             );
 
-            // Pega categoria
-            const filtroSelecionado =
-                this.getAttribute(
-                    "data-filtro"
-                );
 
-            // Filtra
-            filtrarOfertas(
-                filtroSelecionado
-            );
+        if (lista) {
+
+            lista.innerHTML = `
+
+                <p class="erro-ofertas">
+                    Não foi possível carregar as ofertas.
+                </p>
+
+            `;
+
         }
-    );
 
-});
-
-//FILTRO INICIAL
-filtrarOfertas("todas");
-
+    });

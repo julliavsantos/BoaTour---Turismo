@@ -2,51 +2,76 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const slidesContainer = document.querySelector(".slides");
-    const slides = document.querySelectorAll(".slide");
     const prevBtn = document.querySelector(".prev");
     const nextBtn = document.querySelector(".next");
 
-    if (
-        !slidesContainer ||
-        slides.length === 0 ||
-        !prevBtn ||
-        !nextBtn
-    ) {
+    if (!slidesContainer || !prevBtn || !nextBtn) {
         return;
     }
 
     let currentIndex = 0;
     const visibleCards = 3;
 
-    function updateSlider() {
+    function atualizarSlider() {
+
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) {
+            return;
+        }
+
         const slideWidth = slides[0].clientWidth;
+        if (currentIndex > slides.length - visibleCards) {
+            currentIndex = 0;
+        }
+
         slidesContainer.style.transform =
             `translateX(-${currentIndex * slideWidth}px)`;
-
     }
 
     nextBtn.addEventListener("click", () => {
+
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) {
+            return;
+        }
         if (currentIndex < slides.length - visibleCards) {
             currentIndex++;
         } else {
             currentIndex = 0;
         }
 
-        updateSlider();
+        atualizarSlider();
+
     });
 
-
     prevBtn.addEventListener("click", () => {
+
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length === 0) {
+            return;
+        }
         if (currentIndex > 0) {
             currentIndex--;
         } else {
-            currentIndex = slides.length - visibleCards;
+            currentIndex = Math.max(
+                0,
+                slides.length - visibleCards
+            );
         }
-        updateSlider();
+        atualizarSlider();
     });
 
-    window.addEventListener("resize", updateSlider);
-    updateSlider();
+
+    window.addEventListener("resize", atualizarSlider);
+
+    const verificarCards = setInterval(() => {
+
+        const slides = document.querySelectorAll(".slide");
+        if (slides.length > 0) {
+            clearInterval(verificarCards);
+            atualizarSlider();
+        }
+    }, 100);
 
 });
 
