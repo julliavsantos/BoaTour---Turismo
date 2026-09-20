@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/menurodape.css">
     <link rel="stylesheet" href="style.css">
-    <title>Destinos</title>
+    <title>Ofertas</title>
 </head>
 <body>
     <div class="nav">
@@ -16,11 +16,11 @@
 
     <ul class="menu">
         <li><a href="/index.html#inicio">Início</a></li>
-        <li><a href="index.html">Destinos</a></li>
+        <li><a href="/DESTINOS/index.html">Destinos</a></li>
         <li>Voos</li>
         <li>Hotéis</li>
         <li>Atividades</li>
-        <li><a href="/index.html#ofertas">Ofertas</a></li>
+        <li><a href="/OFERTAS/index.html">Ofertas</a></li>
         <li><a href="/TURISMO CONSCIENTE/index.html">Turismo Consciente</a></li>
         <li><a href="/index.html#sobre">Sobre Nós</a></li>
 
@@ -61,14 +61,14 @@
             </div>
 
             <div class="perfil-links">
-                <a href="#">
+                <a href="/PERFIL/index.html#viagens">
                     <span>✈</span>
                     <div>
                         <strong>Minhas viagens</strong>
                         <small>Veja suas reservas</small>
                     </div>
                 </a>
-                <a href="#">
+                <a href="/PERFIL/index.html#favoritos">
                     <span>❤︎</span>
                     <div>
                         <strong>Favoritos</strong>
@@ -98,8 +98,10 @@
 
         <div class="topo-destinos">
     <div class="container03" id="ofertas">
-        <p>Destinos incríveis<br>
-            para você explorar <br></p>
+        <p>Ofertas imperdíveris<br>
+            para sua próxima viagem <br>
+            <span>Aproveite preços especiais e parcelamentos facilitados!</span>
+        </p>
     </div>
 
     <div class="campo-partida">
@@ -124,33 +126,21 @@
     <button class="filtro ativo" data-filtro="todas">
         Todos
     </button>
-    <button class="filtro" data-filtro="Praia">
-        Praias
+    <button class="filtro" data-filtro="Nacional">
+        Nacional
     </button>
-    <button class="filtro" data-filtro="Cidade">
-        Cidade
+    <button class="filtro" data-filtro="Internacional">
+        Internacional
     </button>
-    <button class="filtro" data-filtro="Natureza">
-        Natureza
-    </button>
-    <button class="filtro" data-filtro="História">
-        História
-    </button>
-    <button class="filtro" data-filtro="Entretenimento">
-        Entretenimento
-    </button>
-    <button class="filtro" data-filtro="Turismo">
-        Turismo
-    </button>
-    <button class="filtro" data-filtro="Cultura">
-        Cultura
+    <button class="filtro" data-filtro="Pacote">
+        Pacotes
     </button>
 
 </div>
 
-    <section class="destinos">
-    <div class="destinos-grid" id="destinosGrid">
-        <!-- Os destinos serão carregados pelo banco de dados -->
+    <section class="ofertas">
+    <div class="ofertas-grid" id="ofertasGrid">
+        <!-- As ofertas serão carregados pelo banco de dados -->
     </div>
 </section>
 
@@ -227,7 +217,6 @@
             </div>
     </div>
 
-    ```html
 <div class="modal-oferta" id="modalOferta">
 
     <div class="oferta-detalhes">
@@ -236,73 +225,65 @@
             &times;
         </button>
 
-
         <div class="oferta-detalhes-imagem">
 
-            <img
-                id="modalImagemOferta"
-                src=""
-                alt=""
-            >
+            <img id="modalImagemOferta" src="" alt="">
+
+            <span class="modal-desconto" id="modalDesconto">
+                -0%
+            </span>
 
         </div>
 
 
         <div class="oferta-detalhes-conteudo">
 
-            <span
-                class="modal-categoria"
-                id="modalCategoria"
-            >
-                Praia
+            <span class="modal-categoria" id="modalCategoria">
+                -
             </span>
 
 
             <h2 id="modalTitulo">
-                Cancún
+                -
             </h2>
 
 
-            <p
-                class="modal-resumo"
-                id="modalResumo"
-            >
-                Cancún, México • 7 dias
+            <p class="modal-resumo" id="modalResumo">
+                -
             </p>
 
 
             <div class="linha-detalhes">
 
-                <div>
-                    <span>📍</span>
-                    <p>Destino</p>
-                </div>
+    <div>
+        <span>✈</span>
+        <p>Passagem aérea</p>
+    </div>
 
-                <div>
-                    <span>🗓</span>
-                    <p id="modalDias">
-                        7 dias
-                    </p>
-                </div>
+    <div>
+        <span>🏛</span>
+        <p>Hospedagem</p>
+    </div>
 
-                <div>
-                    <span>🌎</span>
-                    <p id="modalPais">
-                        México
-                    </p>
-                </div>
+    <div>
+        <span>🎟</span>
+        <p>Passeios</p>
+    </div>
 
-            </div>
+    <div>
+        <span>🗓</span>
+        <p>0 dias</p>
+    </div>
+
+</div>
 
 
             <div class="descricao-oferta">
 
-                <h3>
-                    Sobre este destino
-                </h3>
+                <h3>Sobre esta viagem</h3>
 
                 <p id="modalDescricao">
-                    Conheça este incrível destino.
+                    -
                 </p>
 
             </div>
@@ -312,17 +293,21 @@
 
                 <div>
 
-                    <span>
-                        A partir de:
-                    </span>
+                    <span>De:</span>
+
+                    <del id="modalPrecoAntigo">
+                        R$ 0,00
+                    </del>
 
                 </div>
 
 
                 <div>
 
+                    <span>Por apenas:</span>
+
                     <strong id="modalPreco">
-                        R$ 3.200,00
+                        R$ 0,00
                     </strong>
 
                 </div>
@@ -330,11 +315,8 @@
             </div>
 
 
-            <button
-                class="btn-comprar"
-                id="btnComprar"
-            >
-                Ver ofertas
+            <button class="btn-comprar" id="btnComprar">
+                Comprar agora
             </button>
 
         </div>
@@ -342,13 +324,11 @@
     </div>
 
 </div>
-```
-
 
     <script src="script.js"></script>
     <script src="/js/menu.js"></script>
     <script src="/js/modais.js"></script>
-    <script src="/js/ofertas.js"></script>
     <script src="/js/darkmodedemais.js"></script>
+    
 </body>
 </html>

@@ -1375,3 +1375,9 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarContadores();
 
 });
+
+const btnTodasOfertas = document.getElementById("btnTodasOfertas");
+
+btnTodasOfertas.addEventListener("click", () => {
+    window.location.href = "OFERTAS/index.html";
+});

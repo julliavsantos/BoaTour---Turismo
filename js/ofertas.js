@@ -1,17 +1,18 @@
-// ==========================================
-// OFERTAS
-// ==========================================
-
-fetch('/ofertas')
-
-    .then(response => response.json())
-
+fetch('http://localhost:3000/ofertas')
+    .then(response => {
+        console.log('Resposta do servidor:', response);
+        return response.json();
+    })
     .then(ofertas => {
+        console.log('OFERTAS RECEBIDAS:', ofertas);
 
-        var lista =
-            document.getElementById('listaOfertas');
+        var lista = document.getElementById('listaOfertas');
+
+        console.log('LISTA ENCONTRADA:', lista);
 
         lista.innerHTML = '';
+
+        // daqui continua o seu código...'';
 
 
         // ======================================
@@ -146,73 +147,69 @@ fetch('/ofertas')
             document.querySelectorAll('.card-oferta');
 
 
-        function filtrarOfertas(
-            filtroSelecionado
-        ) {
+        function filtrarOfertas(filtroSelecionado) {
 
-            cards.forEach(function(oferta) {
+    let contador = 0;
 
-                const categoria =
-                    oferta.getAttribute(
-                        'data-categoria'
-                    );
+    cards.forEach(function(oferta) {
 
-                const destaque =
-                    oferta.getAttribute(
-                        'data-destaque'
-                    );
+        const categoria =
+            oferta.getAttribute('data-categoria');
+
+        const destaque =
+            oferta.getAttribute('data-destaque');
 
 
-                // ==============================
-                // TODAS AS OFERTAS
-                // ==============================
+        // ======================================
+        // TODAS AS OFERTAS
+        // SOMENTE DESTAQUES
+        // MÁXIMO 8
+        // ======================================
 
-                if (
-                    filtroSelecionado === 'todas'
-                ) {
+        if (filtroSelecionado === 'todas') {
 
-                    // "Todas" mostra somente
-                    // as ofertas em destaque
+            if (
+                destaque === 'sim' &&
+                contador < 8
+            ) {
 
-                    if (
-                        destaque === 'sim'
-                    ) {
+                oferta.style.display = '';
+                contador++;
 
-                        oferta.style.display = '';
+            } else {
 
-                    } else {
+                oferta.style.display = 'none';
 
-                        oferta.style.display = 'none';
-
-                    }
-
-                }
-
-
-                // ==============================
-                // CATEGORIAS
-                // ==============================
-
-                else {
-
-                    if (
-                        categoria ===
-                        filtroSelecionado
-                    ) {
-
-                        oferta.style.display = '';
-
-                    } else {
-
-                        oferta.style.display = 'none';
-
-                    }
-
-                }
-
-            });
+            }
 
         }
+
+
+        // ======================================
+        // CATEGORIAS
+        // MÁXIMO 8
+        // ======================================
+
+        else {
+
+            if (
+                categoria === filtroSelecionado &&
+                contador < 8
+            ) {
+
+                oferta.style.display = '';
+                contador++;
+
+            } else {
+
+                oferta.style.display = 'none';
+
+            }
+
+        }
+
+    });
+}
 
 
         // ======================================
