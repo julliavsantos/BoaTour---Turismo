@@ -146,6 +146,23 @@ body {
     gap: 30px;
     min-height: 300px;
 }
+.btn-ver-mais {
+    display: block;
+    margin: 40px auto;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-dark);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-ver-mais:hover {
+    transform: scale(1.05);
+    background: var(--primary-dark);
+    color: white;
+}
 .card-oferta {
     background: var(--card);
     border-radius: 10px;
@@ -168,17 +185,6 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.desconto {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--primary-strong);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: bold;
-}
 .info-oferta {
     padding: 15px;
 }
@@ -193,14 +199,19 @@ body {
     color: var(--text);
 }
 .precos {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
-.preco-antigo {
-    font-size: 12px;
-    color: var(--text);
-    text-decoration: line-through;
+.selinho-ods {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 8px;
 }
 .precos strong {
     font-size: 17px;
@@ -224,19 +235,6 @@ body {
     transform: scale(1.05);
     background: var(--primary-dark);
     color: white;
-}
-.modal-oferta {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    z-index: 9999;
-}
-.modal-oferta.ativo {
-    display: flex;
 }
 .oferta-detalhes {
     position: relative;
@@ -269,17 +267,6 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-.modal-desconto {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: var(--primary-strong);
-    color: white;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
 }
 .fechar-oferta {
     position: absolute;
@@ -414,5 +401,60 @@ body {
     margin-right: auto;
     color: var(--muted);
     font-size: 15px;
+}
+.modal-ods {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.ods-selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+}
+.ods-selo img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+.descricao-destino {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.localizacao-destino {
+    margin-bottom: 8px !important;
+}
+.dias-destino {
+    margin-bottom: 10px !important;
+}
+.btn-ver-ofertas {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 12px;
+    background: var(--primary);
+    color: white;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-ver-ofertas:hover {
+    background: var(--primary-dark);
 }
 }

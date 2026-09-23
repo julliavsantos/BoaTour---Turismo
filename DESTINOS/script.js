@@ -5,18 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
 
     const destinosGrid = document.getElementById("destinosGrid");
+
     const campoBusca = document.getElementById("partida");
+
     const botoesFiltro = document.querySelectorAll(".filtro");
 
-    // Elementos do modal
-    const modalOferta = document.getElementById("modalOferta");
-    const fecharOferta = document.getElementById("fecharOferta");
-    const modalImagemOferta = document.getElementById("modalImagemOferta");
-    const modalCategoria = document.getElementById("modalCategoria");
-    const modalTitulo = document.getElementById("modalTitulo");
-    const modalResumo = document.getElementById("modalResumo");
-    const modalDescricao = document.getElementById("modalDescricao");
-    const modalPreco = document.getElementById("modalPreco");
+    const btnVerMaisDestinos =
+        document.getElementById("btnVerMaisDestinos");
 
 
     // ==========================================
@@ -33,8 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
 
     let todosDestinos = [];
+
+    let destinosFiltrados = [];
+
     let filtroAtual = "todas";
+
     let buscaAtual = "";
+
+    // Quantidade de destinos que aparecem
+    let quantidadeVisivel = 8;
 
 
     // ==========================================
@@ -50,24 +52,43 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             return response.json();
+
         })
 
         .then(destinos => {
 
+            console.log(
+                "ODS DOS DESTINOS:",
+                destinos.map(destino => ({
+                    nome: destino.nome,
+                    ods8: destino.ods8,
+                    ods12: destino.ods12
+                }))
+            );
+
             todosDestinos = destinos;
 
             aplicarFiltros();
+
         })
 
         .catch(error => {
 
-            console.error("Erro ao carregar destinos:", error);
+            console.error(
+                "Erro ao carregar destinos:",
+                error
+            );
 
             destinosGrid.innerHTML = `
                 <p class="mensagem-destinos">
                     Não foi possível carregar os destinos.
                 </p>
             `;
+
+            if (btnVerMaisDestinos) {
+                btnVerMaisDestinos.style.display = "none";
+            }
+
         });
 
 
@@ -82,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/[\u0300-\u036f]/g, "")
             .toLowerCase()
             .trim();
+
     }
 
 
@@ -91,72 +113,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function aplicarFiltros() {
 
-        const resultados = todosDestinos.filter(destino => {
+        const resultados =
+            todosDestinos.filter(destino => {
 
-            // ------------------------------
-            // FILTRO POR CATEGORIA
-            // ------------------------------
+                // ------------------------------------------
+                // FILTRO POR CATEGORIA
+                // ------------------------------------------
 
-            let passouNoFiltro = true;
+                let passouNoFiltro = true;
 
-            if (filtroAtual !== "todas") {
+                if (filtroAtual !== "todas") {
 
-                // As categorias vêm do banco como:
-                // ["Praia", "Natureza", "Turismo"]
+                    const categoriasDestino =
+                        Array.isArray(destino.categorias)
+                            ? destino.categorias
+                            : [];
 
-                const categoriasDestino = Array.isArray(destino.categorias)
-                    ? destino.categorias
-                    : [];
+                    const categoriasNormalizadas =
+                        categoriasDestino.map(categoria =>
+                            normalizarTexto(categoria)
+                        );
 
-                // Normaliza todas as categorias
-                const categoriasNormalizadas =
-                    categoriasDestino.map(categoria =>
-                        normalizarTexto(categoria)
-                    );
+                    passouNoFiltro =
+                        categoriasNormalizadas.includes(
+                            normalizarTexto(filtroAtual)
+                        );
 
-                // Verifica se o destino possui
-                // a categoria escolhida
-
-                passouNoFiltro =
-                    categoriasNormalizadas.includes(
-                        normalizarTexto(filtroAtual)
-                    );
-            }
+                }
 
 
-            // ------------------------------
-            // BUSCA
-            // ------------------------------
+                // ------------------------------------------
+                // BUSCA
+                // ------------------------------------------
 
-            const textoBusca = normalizarTexto(buscaAtual);
+                const textoBusca =
+                    normalizarTexto(buscaAtual);
 
-            const categoriasTexto = Array.isArray(destino.categorias)
-                ? destino.categorias.join(" ")
-                : "";
+                const categoriasTexto =
+                    Array.isArray(destino.categorias)
+                        ? destino.categorias.join(" ")
+                        : "";
 
-            const textoDestino = normalizarTexto(`
-                ${destino.nome}
-                ${destino.cidade}
-                ${destino.pais}
-                ${destino.descricao}
-                ${destino.tipo}
-                ${categoriasTexto}
-            `);
+                const textoDestino =
+                    normalizarTexto(`
+                        ${destino.nome}
+                        ${destino.cidade}
+                        ${destino.pais}
+                        ${destino.descricao}
+                        ${destino.tipo}
+                        ${categoriasTexto}
+                    `);
 
-            const passouNaBusca =
-                textoBusca === "" ||
-                textoDestino.includes(textoBusca);
-
-
-            // ------------------------------
-            // RESULTADO FINAL
-            // ------------------------------
-
-            return passouNoFiltro && passouNaBusca;
-        });
+                const passouNaBusca =
+                    textoBusca === "" ||
+                    textoDestino.includes(textoBusca);
 
 
-        renderizarDestinos(resultados);
+                // ------------------------------------------
+                // RESULTADO FINAL
+                // ------------------------------------------
+
+                return passouNoFiltro && passouNaBusca;
+
+            });
+
+
+        // Guarda os resultados encontrados
+        destinosFiltrados = resultados;
+
+
+        // Sempre que pesquisar ou trocar filtro,
+        // volta para os 8 primeiros
+        quantidadeVisivel = 8;
+
+
+        // Renderiza novamente
+        renderizarDestinos();
+
     }
 
 
@@ -164,34 +197,57 @@ document.addEventListener("DOMContentLoaded", () => {
     // MOSTRAR OS CARDS
     // ==========================================
 
-    function renderizarDestinos(destinos) {
+    function renderizarDestinos() {
 
         destinosGrid.innerHTML = "";
 
 
-        // Nenhum resultado
-        if (destinos.length === 0) {
+        // ======================================
+        // NENHUM RESULTADO
+        // ======================================
+
+        if (destinosFiltrados.length === 0) {
 
             destinosGrid.innerHTML = `
                 <div class="sem-destinos">
 
-                    <h3>Nenhum destino encontrado</h3>
+                    <h3>
+                        Nenhum destino encontrado
+                    </h3>
 
                     <p>
-                        Tente buscar outro destino ou alterar o filtro.
+                        Tente buscar outro destino
+                        ou alterar o filtro.
                     </p>
 
                 </div>
             `;
 
+            atualizarBotaoVerMais();
+
             return;
         }
 
 
-        // Criar cards
-        destinos.forEach(destino => {
+        // ======================================
+        // PEGAR SOMENTE OS VISÍVEIS
+        // ======================================
 
-            const card = document.createElement("div");
+        const destinosVisiveis =
+            destinosFiltrados.slice(
+                0,
+                quantidadeVisivel
+            );
+
+
+        // ======================================
+        // CRIAR CARDS
+        // ======================================
+
+        destinosVisiveis.forEach(destino => {
+
+            const card =
+                document.createElement("div");
 
             card.classList.add("card-oferta");
 
@@ -200,7 +256,25 @@ document.addEventListener("DOMContentLoaded", () => {
             // IMAGEM
             // ==================================
 
-            const imagem = destino.imagem || "";
+            const imagem =
+                destino.imagem || "";
+
+
+            // ==================================
+            // PREÇO
+            // ==================================
+
+            const preco =
+                Number(destino.preco_base || 0);
+
+
+            // ==================================
+            // DESCRIÇÃO
+            // ==================================
+
+            const descricao =
+                destino.descricao ||
+                "Conheça este incrível destino.";
 
 
             // ==================================
@@ -208,244 +282,165 @@ document.addEventListener("DOMContentLoaded", () => {
             // ==================================
 
             card.innerHTML = `
+    <div class="imagem-oferta">
+        <img
+            src="/img/destinos/${imagem}"
+            alt="${destino.nome || "Destino"}"
+        >
+    </div>
 
-                <div class="imagem-oferta">
+    <div class="info-oferta">
 
-                    <img
-                        src="/img/destinos/${imagem}"
-                        alt="${destino.nome}"
-                    >
+        <h3>
+            ${destino.nome || "Destino"}
+        </h3>
 
-                </div>
+        <p class="localizacao-destino">
+            ${destino.cidade || ""}, ${destino.pais || ""}
+        </p>
 
+        <p class="descricao-destino">
+            ${destino.descricao || "Conheça este incrível destino."}
+        </p>
 
-                <div class="info-oferta">
+        <p class="dias-destino">
+            ${destino.dias || 0} dias
+        </p>
 
-                    <h3>
-                        ${destino.nome}
-                    </h3>
+        <div class="precos">
 
-                    <p>
-                        ${destino.cidade}, ${destino.pais}
-                    </p>
-
-                    <p>
-                        ${destino.dias} dias
-                    </p>
-
-                    <div class="precos">
-
-                        <strong>
-                            R$ ${Number(destino.preco_base).toLocaleString(
-                                "pt-BR",
-                                {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                }
-                            )}
-                        </strong>
-
-                    </div>
-
-                </div>
-            `;
-
-
-            // ==================================
-            // ABRIR MODAL
-            // ==================================
-
-            card.addEventListener("click", () => {
-
-                abrirModalDestino(destino);
-
-            });
-
-
-            destinosGrid.appendChild(card);
-        });
-    }
-
-
-    // ==========================================
-    // ABRIR MODAL DO DESTINO
-    // ==========================================
-
-    function abrirModalDestino(destino) {
-
-        if (!modalOferta) {
-            return;
-        }
-
-
-        // ==================================
-        // IMAGEM
-        // ==================================
-
-        if (modalImagemOferta) {
-
-            modalImagemOferta.src =
-                `/img/destinos/${destino.imagem || ""}`;
-
-            modalImagemOferta.alt =
-                destino.nome || "Destino";
-        }
-
-
-        // ==================================
-        // CATEGORIA
-        // ==================================
-
-        if (modalCategoria) {
-
-            // Mostra as categorias do destino
-            // no modal
-
-            if (
-                Array.isArray(destino.categorias) &&
-                destino.categorias.length > 0
-            ) {
-
-                modalCategoria.textContent =
-                    destino.categorias.join(" • ");
-
-            } else {
-
-                modalCategoria.textContent =
-                    destino.tipo || "Destino";
+            ${
+                Number(destino.ods8) === 1 ||
+                Number(destino.ods12) === 1
+                    ? `
+                        <img
+                            class="selinho-ods"
+                            src="/img/icones/arvore.png"
+                            alt="Destino alinhado às ODS"
+                        >
+                    `
+                    : ""
             }
-        }
+
+            <strong>
+                R$ ${preco.toLocaleString("pt-BR", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })}
+            </strong>
+
+        </div>
+
+        <button
+            class="btn-ver-ofertas"
+            type="button"
+        >
+            Ver ofertas
+        </button>
+
+    </div>
+`;
 
 
-        // ==================================
-        // TÍTULO
-        // ==================================
+            // ==================================
+            // BOTÃO VER OFERTAS
+            // ==================================
 
-        if (modalTitulo) {
-
-            modalTitulo.textContent =
-                destino.nome || "Destino";
-        }
+            const btnVerOfertas =
+                card.querySelector(".btn-ver-ofertas");
 
 
-        // ==================================
-        // RESUMO
-        // ==================================
+            if (btnVerOfertas) {
 
-        if (modalResumo) {
+                btnVerOfertas.addEventListener(
+                    "click",
+                    event => {
 
-            modalResumo.textContent =
-                `${destino.cidade || ""}, ${destino.pais || ""} • ${destino.dias || 0} dias`;
-        }
+                        // Impede o clique de fazer
+                        // qualquer outra ação no card
+                        event.stopPropagation();
 
+                        console.log(
+                            "Ver ofertas:",
+                            destino.nome
+                        );
 
-        // ==================================
-        // DESCRIÇÃO
-        // ==================================
+                        // Por enquanto leva para
+                        // a página de ofertas
+                        window.location.href =
+                            "/OFERTAS/index.html";
 
-        if (modalDescricao) {
-
-            modalDescricao.textContent =
-                destino.descricao ||
-                "Conheça este incrível destino.";
-        }
-
-
-        // ==================================
-        // PREÇO
-        // ==================================
-
-        if (modalPreco) {
-
-            modalPreco.textContent =
-                `R$ ${Number(
-                    destino.preco_base || 0
-                ).toLocaleString(
-                    "pt-BR",
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
                     }
-                )}`;
-        }
+                );
+
+            }
 
 
-        // ==================================
-        // ESCONDER DESCONTO
-        // ==================================
-
-        const modalDesconto =
-            document.getElementById("modalDesconto");
-
-        if (modalDesconto) {
-
-            modalDesconto.style.display = "none";
-        }
-
-
-        // ==================================
-        // ABRIR MODAL
-        // ==================================
-
-        modalOferta.classList.add("ativo");
-
-        document.body.classList.add("modal-aberto");
-    }
-
-
-    // ==========================================
-    // FECHAR MODAL
-    // ==========================================
-
-    if (fecharOferta) {
-
-        fecharOferta.addEventListener("click", () => {
-
-            fecharModalDestino();
+            // Adiciona o card na página
+            destinosGrid.appendChild(card);
 
         });
+
+
+        // Atualiza o botão depois de renderizar
+        atualizarBotaoVerMais();
+
     }
 
 
-    function fecharModalDestino() {
+    // ==========================================
+    // ATUALIZAR BOTÃO "VER MAIS"
+    // ==========================================
 
-        if (!modalOferta) {
+    function atualizarBotaoVerMais() {
+
+        if (!btnVerMaisDestinos) {
             return;
         }
 
-        modalOferta.classList.remove("ativo");
 
-        document.body.classList.remove("modal-aberto");
-    }
+        // Se ainda existem destinos para mostrar
 
+        if (
+            quantidadeVisivel <
+            destinosFiltrados.length
+        ) {
 
-    // ==========================================
-    // FECHAR CLICANDO FORA DO MODAL
-    // ==========================================
+            btnVerMaisDestinos.style.display =
+                "block";
 
-    if (modalOferta) {
+        } else {
 
-        modalOferta.addEventListener("click", event => {
+            // Se já mostrou todos
 
-            if (event.target === modalOferta) {
+            btnVerMaisDestinos.style.display =
+                "none";
 
-                fecharModalDestino();
-            }
-        });
-    }
-
-
-    // ==========================================
-    // FECHAR COM ESC
-    // ==========================================
-
-    document.addEventListener("keydown", event => {
-
-        if (event.key === "Escape") {
-
-            fecharModalDestino();
         }
-    });
+
+    }
+
+
+    // ==========================================
+    // BOTÃO "VER MAIS"
+    // ==========================================
+
+    if (btnVerMaisDestinos) {
+
+        btnVerMaisDestinos.addEventListener(
+            "click",
+            () => {
+
+                // Adiciona mais 8
+                quantidadeVisivel += 8;
+
+                // Renderiza novamente
+                renderizarDestinos();
+
+            }
+        );
+
+    }
 
 
     // ==========================================
@@ -454,12 +449,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (campoBusca) {
 
-        campoBusca.addEventListener("input", () => {
+        campoBusca.addEventListener(
+            "input",
+            () => {
 
-            buscaAtual = campoBusca.value;
+                buscaAtual =
+                    campoBusca.value;
 
-            aplicarFiltros();
-        });
+                aplicarFiltros();
+
+            }
+        );
+
     }
 
 
@@ -469,30 +470,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     botoesFiltro.forEach(botao => {
 
-        botao.addEventListener("click", () => {
+        botao.addEventListener(
+            "click",
+            () => {
 
-            // Remove ativo de todos
+                // Remove ativo de todos
 
-            botoesFiltro.forEach(btn => {
+                botoesFiltro.forEach(btn => {
 
-                btn.classList.remove("ativo");
-            });
+                    btn.classList.remove(
+                        "ativo"
+                    );
 
-
-            // Ativa o botão clicado
-
-            botao.classList.add("ativo");
-
-
-            // Guarda o filtro
-
-            filtroAtual = botao.dataset.filtro;
+                });
 
 
-            // Atualiza cards
+                // Ativa o botão clicado
 
-            aplicarFiltros();
-        });
+                botao.classList.add(
+                    "ativo"
+                );
+
+
+                // Guarda o filtro
+
+                filtroAtual =
+                    botao.dataset.filtro;
+
+
+                // Atualiza cards
+
+                aplicarFiltros();
+
+            }
+        );
+
     });
 
 });
