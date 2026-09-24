@@ -70,3 +70,73 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// USUÁRIO LOGADO
+// ==========================================
+
+function atualizarMenuUsuario() {
+
+    const usuarioSalvo = localStorage.getItem("boatourUsuario");
+
+    const btnEntrar = document.getElementById("btnEntrar");
+    const perfilLogin = document.querySelector(".perfil-login");
+
+    const nomePerfil = document.getElementById("nomePerfil");
+    const descricaoPerfil = document.getElementById("descricaoPerfil");
+
+
+    // ==========================================
+    // USUÁRIO NÃO ESTÁ LOGADO
+    // ==========================================
+
+    if (!usuarioSalvo) {
+
+        if (btnEntrar) {
+            btnEntrar.style.display = "";
+        }
+
+        if (perfilLogin) {
+            perfilLogin.style.display = "";
+        }
+
+        if (nomePerfil) {
+            nomePerfil.textContent = "Olá, viajante!";
+        }
+
+        if (descricaoPerfil) {
+            descricaoPerfil.textContent = "Acesse sua conta";
+        }
+
+        return;
+    }
+
+
+    // ==========================================
+    // USUÁRIO ESTÁ LOGADO
+    // ==========================================
+
+    const usuario = JSON.parse(usuarioSalvo);
+
+    // Esconde "Entrar" da barra de navegação
+    if (btnEntrar) {
+        btnEntrar.style.display = "none";
+    }
+
+    // Esconde "Entrar na minha conta" do menu lateral
+    if (perfilLogin) {
+        perfilLogin.style.display = "none";
+    }
+
+    // Coloca o nome do usuário
+    if (nomePerfil) {
+        nomePerfil.textContent = `Olá, ${usuario.nome}!`;
+    }
+
+    if (descricaoPerfil) {
+        descricaoPerfil.textContent = usuario.email;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarMenuUsuario();
+});

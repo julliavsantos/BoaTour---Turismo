@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================================
     // ELEMENTOS DA PÁGINA
-    // ==========================================
-
     const ofertasGrid = document.getElementById("ofertasGrid");
     const campoBusca = document.getElementById("partida");
     const botoesFiltro = document.querySelectorAll(".filtro");
@@ -184,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "card-oferta"
             );
 
+            
             // IMAGEM
             const imagem =
                 oferta.imagem || "";
@@ -210,15 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 desconto =
                     Math.round(
-                        (
-                            (
-                                precoAnterior -
-                                precoAtual
-                            )
-                            /
-                            precoAnterior
-                        ) * 100
-                    );
+                        ((precoAnterior - precoAtual)/precoAnterior) * 100);
             }
 
             // CATEGORIA
@@ -242,7 +232,8 @@ document.addEventListener("DOMContentLoaded", () => {
             card.dataset.hospedagem = oferta.hospedagem || 0;
             card.dataset.passeios = oferta.passeios || 0;
             card.dataset.descricao = oferta.descricao || "";
-
+            card.dataset.ods8 = oferta.ods8 || 0;
+            card.dataset.ods12 = oferta.ods12 || 0;
             // Categoria em minúsculo porque
             // o modal antigo espera exatamente assim.
 
@@ -272,16 +263,35 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${oferta.passeios ? " • Passeios": ""}</p>
 
                     <div class="precos">
-                        ${oferta.preco_anterior ? `
-                            <span class="preco-antigo">R$${Number(oferta.preco_anterior).toLocaleString("pt-BR",{minimumFractionDigits: 2})}
-                            </span>
-                            `: ""}
 
-                        <strong>R$${Number(oferta.preco_atual || 0).toLocaleString("pt-BR",{minimumFractionDigits: 2})}
-                        </strong>
+    ${
+        Number(oferta.ods8) === 1 ||
+        Number(oferta.ods12) === 1
+            ? `
+                <img
+                    class="selinho-ods"
+                    src="/img/icones/arvore.png"
+                    alt="Oferta alinhada às ODS"
+                >
+            `
+            : ""
+    }
 
-                    </div>
-                </div>`;
+    ${oferta.preco_anterior ? `
+        <span class="preco-antigo">
+            R$${Number(oferta.preco_anterior).toLocaleString("pt-BR", {
+                minimumFractionDigits: 2
+            })}
+        </span>
+    ` : ""}
+
+    <strong>
+        R$${Number(oferta.preco_atual || 0).toLocaleString("pt-BR", {
+            minimumFractionDigits: 2
+        })}
+    </strong>
+
+</div>`;
 
             // ADICIONAR AO GRID
             ofertasGrid.appendChild(card);

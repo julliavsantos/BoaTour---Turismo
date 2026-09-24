@@ -1,38 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================================
     // ELEMENTOS DA PÁGINA
-    // ==========================================
-
     const destinosGrid = document.getElementById("destinosGrid");
-
     const campoBusca = document.getElementById("partida");
-
     const botoesFiltro = document.querySelectorAll(".filtro");
+    const btnVerMaisDestinos = document.getElementById("btnVerMaisDestinos");
 
-    const btnVerMaisDestinos =
-        document.getElementById("btnVerMaisDestinos");
-
-
-    // ==========================================
     // SE A PÁGINA NÃO TIVER O GRID
-    // ==========================================
-
     if (!destinosGrid) {
         return;
     }
-
-
-    // ==========================================
     // VARIÁVEIS
-    // ==========================================
-
     let todosDestinos = [];
-
     let destinosFiltrados = [];
-
     let filtroAtual = "todas";
-
     let buscaAtual = "";
 
     // Quantidade de destinos que aparecem

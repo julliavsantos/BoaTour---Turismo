@@ -185,116 +185,166 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // LOGIN
-    // ==========================================
+// LOGIN
+// ==========================================
 
-    if (
-        btnLogin &&
-        cpfLogin &&
-        senhaLogin
-    ) {
+if (
+    btnLogin &&
+    cpfLogin &&
+    senhaLogin
+) {
 
-        btnLogin.addEventListener(
-            "click",
-            () => {
+    btnLogin.addEventListener(
+        "click",
+        async () => {
 
-                const cpf =
-                    cpfLogin.value.trim();
+            const cpf =
+                cpfLogin.value.trim();
 
-                const senha =
-                    senhaLogin.value.trim();
-
-
-                if (!cpf) {
-
-                    alert(
-                        "Digite seu CPF."
-                    );
-
-                    cpfLogin.focus();
-
-                    return;
-                }
+            const senha =
+                senhaLogin.value.trim();
 
 
-                if (cpf.length < 11) {
-
-                    alert(
-                        "Digite um CPF válido."
-                    );
-
-                    cpfLogin.focus();
-
-                    return;
-                }
-
-
-                if (!senha) {
-
-                    alert(
-                        "Digite sua senha."
-                    );
-
-                    senhaLogin.focus();
-
-                    return;
-                }
-
+            // Verifica CPF
+            if (!cpf) {
 
                 alert(
-                    "Login realizado com sucesso!"
+                    "Digite seu CPF."
                 );
 
+                cpfLogin.focus();
 
-                modalLogin.classList.remove(
-                    "ativo"
-                );
-
-                cpfLogin.value = "";
-
-                senhaLogin.value = "";
-
+                return;
             }
-        );
 
-    }
 
+            // Remove pontos e traço do CPF
+            const cpfLimpo =
+                cpf.replace(/\D/g, '');
+
+
+            // Verifica quantidade de números
+            if (cpfLimpo.length !== 11) {
+
+                alert(
+                    "Digite um CPF válido."
+                );
+
+                cpfLogin.focus();
+
+                return;
+            }
+
+
+            // Verifica senha
+            if (!senha) {
+
+                alert(
+                    "Digite sua senha."
+                );
+
+                senhaLogin.focus();
+
+                return;
+            }
+
+
+            try {
+
+                // Envia CPF e senha para o servidor
+                const resposta = await fetch(
+                    "http://localhost:3000/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            cpf: cpfLimpo,
+                            senha: senha
+                        })
+                    }
+                );
+
+
+                const resultado =
+                    await resposta.json();
+
+
+                // Se o servidor retornar erro
+                if (resultado.error) {
+
+                    alert(resultado.error);
+
+                    return;
+                }
+
+
+                // Login realizado
+                if (resultado.message) {
+
+                    alert(
+                        resultado.message
+                    );
+
+
+                    // Guarda os dados básicos
+                    // do usuário logado
+                    localStorage.setItem(
+                        "boatourUsuario",
+                        JSON.stringify(
+                            resultado.usuario
+                        )
+                    );
+
+
+                    // Fecha o modal
+                    modalLogin.classList.remove(
+                        "ativo"
+                    );
+
+
+                    // Limpa os campos
+                    cpfLogin.value = "";
+
+                    senhaLogin.value = "";
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Erro no login:",
+                    error
+                );
+
+                alert(
+                    "Não foi possível conectar ao servidor."
+                );
+            }
+
+        }
+    );
+}
 });
-
 
 // ==========================================
 // MODAL DAS OFERTAS
 // ==========================================
 
-const modalOferta =
-    document.getElementById("modalOferta");
-
-const fecharOferta =
-    document.getElementById("fecharOferta");
-
-const modalImagemOferta =
-    document.getElementById("modalImagemOferta");
-
-const modalDesconto =
-    document.getElementById("modalDesconto");
-
-const modalTitulo =
-    document.getElementById("modalTitulo");
-
-const modalResumo =
-    document.getElementById("modalResumo");
-
-const modalDescricao =
-    document.getElementById("modalDescricao");
-
-const modalPrecoAntigo =
-    document.getElementById("modalPrecoAntigo");
-
-const modalPreco =
-    document.getElementById("modalPreco");
-
-const modalCategoria =
-    document.getElementById("modalCategoria");
+const modalOferta = document.getElementById("modalOferta");
+const fecharOferta = document.getElementById("fecharOferta");
+const modalImagemOferta = document.getElementById("modalImagemOferta");
+const modalDesconto = document.getElementById("modalDesconto");
+const modalTitulo = document.getElementById("modalTitulo");
+const modalResumo = document.getElementById("modalResumo");
+const modalDescricao = document.getElementById("modalDescricao");
+const modalPrecoAntigo = document.getElementById("modalPrecoAntigo");
+const modalPreco = document.getElementById("modalPreco");
+const modalCategoria = document.getElementById("modalCategoria");
+const modalOds = document.getElementById("modalOds");
 
 
 // ==========================================
@@ -467,6 +517,42 @@ document.addEventListener(
 
         }
 
+
+        // ======================================
+// ODS
+// ======================================
+
+const ods8 = Number(card.dataset.ods8 || 0);
+const ods12 = Number(card.dataset.ods12 || 0);
+
+if (modalOds) {
+
+    modalOds.innerHTML = "";
+
+    if (ods8 === 1) {
+        modalOds.innerHTML += `
+            <span class="ods-selo">
+                <img
+                    src="/img/icones/arvore.png"
+                    alt="ODS 8"
+                >
+                ODS 8
+            </span>
+        `;
+    }
+
+    if (ods12 === 1) {
+        modalOds.innerHTML += `
+            <span class="ods-selo">
+                <img
+                    src="/img/icones/arvore.png"
+                    alt="ODS 12"
+                >
+                ODS 12
+            </span>
+        `;
+    }
+}
 
         // ======================================
         // CATEGORIA

@@ -9,6 +9,42 @@
     <title>BoaTour</title>
 </head>
 <body>
+    <!-- MODAL DE BOAS-VINDAS -->
+<div id="modalBoasVindas" class="modal-boas-vindas">
+
+    <div class="modal-boas-vindas-conteudo">
+
+        <button id="fecharBoasVindas" class="fechar-boas-vindas">
+            ×
+        </button>
+
+        <div class="icone-boas-vindas">
+            <img src="img/icones/mascote.png" alt="">
+        </div>
+
+        <h2>Seja bem-vindo(a)!</h2>
+
+        <p id="mensagemBoasVindas">
+            Você ainda tem algumas configurações para ajustar no seu perfil.
+            Deseja finalizá-las agora?
+        </p>
+
+        <div class="botoes-boas-vindas">
+
+            <button id="btnIrPerfil" class="btn-ir-perfil">
+                Sim, me encaminhe ao meu perfil
+            </button>
+
+            <button id="btnNavegar" class="btn-navegar">
+                Não, prefiro navegar por enquanto
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
     <div class="cont" id="inicio">
     <div class="container">
         <div class="nav">
@@ -43,19 +79,21 @@
     <div class="perfil-menu" id="perfilMenu">
 
             <div class="perfil-topo">
-                <div class="avatar">
-                    <img src="img/icones/perfil.png" alt="Perfil">
-                </div>
-                <div>
-                    <h3>Olá, viajante!</h3>
-                    <p>Acesse sua conta</p>
-                </div>
 
-                <button class="fechar-perfil" id="fecharPerfil">
-                    &times;
-                </button>
+    <div class="avatar">
+        <img src="img/icones/perfil.png" alt="Perfil">
+    </div>
 
-            </div>
+    <div>
+        <h3 id="nomePerfil">Olá, viajante!</h3>
+        <p id="descricaoPerfil">Acesse sua conta</p>
+    </div>
+
+    <button class="fechar-perfil" id="fecharPerfil">
+        &times;
+    </button>
+
+</div>
 
             <div class="perfil-login">
                 <button id="abrirLoginPerfil">
@@ -505,41 +543,25 @@
 
     <div class="oferta-detalhes">
 
-        <button class="fechar-oferta" id="fecharOferta">
-            &times;
-        </button>
+        <button class="fechar-oferta" id="fecharOferta">&times;</button>
 
         <div class="oferta-detalhes-imagem">
-
             <img id="modalImagemOferta" src="" alt="">
-
-            <span class="modal-desconto" id="modalDesconto">
-                -0%
-            </span>
-
+            <span class="modal-desconto" id="modalDesconto">-0%</span>
         </div>
 
 
         <div class="oferta-detalhes-conteudo">
+            <span class="modal-categoria" id="modalCategoria">-</span>
 
-            <span class="modal-categoria" id="modalCategoria">
-                -
-            </span>
+            <h2 id="modalTitulo">-</h2>
+            <p class="modal-resumo" id="modalResumo">-</p>
 
-
-            <h2 id="modalTitulo">
-                -
-            </h2>
-
-
-            <p class="modal-resumo" id="modalResumo">
-                -
-            </p>
-
-
+            <div class="modal-ods" id="modalOds"></div>
+            
             <div class="linha-detalhes">
-
-    <div>
+        <div>
+        
         <span>✈</span>
         <p>Passagem aérea</p>
     </div>
@@ -558,58 +580,34 @@
         <span>🗓</span>
         <p>0 dias</p>
     </div>
-
-</div>
+            </div>
 
 
             <div class="descricao-oferta">
-
                 <h3>Sobre esta viagem</h3>
-
-                <p id="modalDescricao">
-                    -
-                </p>
-
+                <p id="modalDescricao">-</p>
             </div>
-
 
             <div class="preco-modal">
-
                 <div>
-
                     <span>De:</span>
-
-                    <del id="modalPrecoAntigo">
-                        R$ 0,00
-                    </del>
-
+                    <del id="modalPrecoAntigo">R$ 0,00</del>
                 </div>
-
 
                 <div>
-
                     <span>Por apenas:</span>
-
-                    <strong id="modalPreco">
-                        R$ 0,00
-                    </strong>
-
+                    <strong id="modalPreco">R$ 0,00</strong>
                 </div>
-
             </div>
 
 
-            <button class="btn-comprar" id="btnComprar">
-                Comprar agora
-            </button>
+            <button class="btn-comprar" id="btnComprar">Comprar agora</button>
 
         </div>
 
     </div>
 
 </div>
-
-
 
     <script src="js/script.js"></script>
     <script src="js/menu.js"></script>

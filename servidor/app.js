@@ -9,8 +9,9 @@ const corsHeaders = {
     'Access-Control-Allow-Headers': 'Content-Type'
 }
 
-const DestinoBD = require('./DestinoBD')
-const OfertaBD = require('./OfertaBD')
+const DestinoBD = require('./database/DestinoBD')
+const OfertaBD = require('./database/OfertaBD')
+const UsuariosBD = require('./database/UsuariosBD')
 
 
 // ==========================================
@@ -58,6 +59,108 @@ function buscaOfertas(res) {
         var json = JSON.stringify(ofertas)
 
         res.end(json)
+
+    })
+
+}
+
+
+// ==========================================
+// CADASTRA USUÁRIO
+// ==========================================
+
+function cadastraUsuario(req, res) {
+
+    var body = ''
+
+    req.on('data', function(data) {
+
+        body += data
+
+    })
+
+    req.on('end', function() {
+
+        try {
+
+            var usuario = JSON.parse(body)
+
+            UsuariosBD.addUsuario(usuario, function(resultado) {
+
+                res.writeHead(201, {
+                    'Content-Type':
+                        'application/json;charset=utf-8'
+                })
+
+                res.end(JSON.stringify(resultado))
+
+            })
+
+        } catch (error) {
+
+            console.log('ERRO NO CADASTRO:', error)
+
+            res.writeHead(400, {
+                'Content-Type':
+                    'application/json;charset=utf-8'
+            })
+
+            res.end(JSON.stringify({
+                error: 'Dados inválidos.'
+            }))
+
+        }
+
+    })
+
+}
+
+
+// ==========================================
+// LOGIN DO USUÁRIO
+// ==========================================
+
+function loginUsuario(req, res) {
+
+    var body = ''
+
+    req.on('data', function(data) {
+
+        body += data
+
+    })
+
+    req.on('end', function() {
+
+        try {
+
+            var usuario = JSON.parse(body)
+
+            UsuariosBD.login(usuario, function(resultado) {
+
+                res.writeHead(200, {
+                    'Content-Type':
+                        'application/json;charset=utf-8'
+                })
+
+                res.end(JSON.stringify(resultado))
+
+            })
+
+        } catch (error) {
+
+            console.log('ERRO NO LOGIN:', error)
+
+            res.writeHead(400, {
+                'Content-Type':
+                    'application/json;charset=utf-8'
+            })
+
+            res.end(JSON.stringify({
+                error: 'Dados inválidos.'
+            }))
+
+        }
 
     })
 
@@ -115,26 +218,31 @@ function mostraArquivo(res, caminho, tipo) {
 
 var callback = function(req, res) {
 
-    // ======================================
+    // ==========================================
     // CORS
-    // ======================================
+    // ==========================================
 
     Object.entries(corsHeaders).forEach(
         ([chave, valor]) => {
+
             res.setHeader(chave, valor)
+
         }
     )
 
-    // ======================================
+
+    // ==========================================
     // REQUISIÇÃO OPTIONS
-    // ======================================
+    // ==========================================
 
     if (req.method === 'OPTIONS') {
 
         res.writeHead(204)
+
         res.end()
 
         return
+
     }
 
 
@@ -144,11 +252,37 @@ var callback = function(req, res) {
     )
 
 
-    // ======================================
-    // PÁGINA INICIAL
-    // ======================================
+    // ==========================================
+    // CADASTRO
+    // ==========================================
 
-    if (rota.pathname == '/') {
+    if (
+        req.method === 'POST' &&
+        rota.pathname === '/registro'
+    ) {
+
+        cadastraUsuario(req, res)
+
+
+    // ==========================================
+    // LOGIN
+    // ==========================================
+
+    } else if (
+        req.method === 'POST' &&
+        rota.pathname === '/login'
+    ) {
+
+        loginUsuario(req, res)
+
+
+    // ==========================================
+    // PÁGINA INICIAL
+    // ==========================================
+
+    } else if (
+        rota.pathname === '/'
+    ) {
 
         mostraArquivo(
             res,
@@ -157,12 +291,12 @@ var callback = function(req, res) {
         )
 
 
-    // ======================================
+    // ==========================================
     // PÁGINA DE DESTINOS
-    // ======================================
+    // ==========================================
 
     } else if (
-        rota.pathname == '/destinos/'
+        rota.pathname === '/destinos/'
     ) {
 
         mostraArquivo(
@@ -172,12 +306,12 @@ var callback = function(req, res) {
         )
 
 
-    // ======================================
+    // ==========================================
     // TODOS OS DESTINOS DO BANCO
-    // ======================================
+    // ==========================================
 
     } else if (
-        rota.pathname == '/destinos'
+        rota.pathname === '/destinos'
     ) {
 
         res.writeHead(200, {
@@ -188,13 +322,12 @@ var callback = function(req, res) {
         buscaDestinos(res)
 
 
-    // ======================================
+    // ==========================================
     // SOMENTE PRAIAS POPULARES
-    // ======================================
+    // ==========================================
 
     } else if (
-        rota.pathname ==
-        '/destinos/praias-populares'
+        rota.pathname === '/destinos/praias-populares'
     ) {
 
         res.writeHead(200, {
@@ -205,12 +338,12 @@ var callback = function(req, res) {
         buscaPraiasPopulares(res)
 
 
-    // ======================================
+    // ==========================================
     // TODAS AS OFERTAS DO BANCO
-    // ======================================
+    // ==========================================
 
     } else if (
-        rota.pathname == '/ofertas'
+        rota.pathname === '/ofertas'
     ) {
 
         res.writeHead(200, {
@@ -221,9 +354,9 @@ var callback = function(req, res) {
         buscaOfertas(res)
 
 
-    // ======================================
+    // ==========================================
     // CSS
-    // ======================================
+    // ==========================================
 
     } else if (
         rota.pathname.startsWith('/css/')
@@ -244,9 +377,9 @@ var callback = function(req, res) {
         )
 
 
-    // ======================================
+    // ==========================================
     // JAVASCRIPT
-    // ======================================
+    // ==========================================
 
     } else if (
         rota.pathname.startsWith('/js/')
@@ -255,6 +388,11 @@ var callback = function(req, res) {
         var arquivo =
             '..' + rota.pathname
 
+        console.log(
+            'JavaScript solicitado:',
+            arquivo
+        )
+
         mostraArquivo(
             res,
             arquivo,
@@ -262,9 +400,9 @@ var callback = function(req, res) {
         )
 
 
-    // ======================================
+    // ==========================================
     // IMAGENS
-    // ======================================
+    // ==========================================
 
     } else if (
         rota.pathname.startsWith('/img/')
@@ -310,9 +448,9 @@ var callback = function(req, res) {
         )
 
 
-    // ======================================
+    // ==========================================
     // ROTA INVÁLIDA
-    // ======================================
+    // ==========================================
 
     } else {
 

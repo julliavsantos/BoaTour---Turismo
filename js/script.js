@@ -1381,3 +1381,94 @@ const btnTodasOfertas = document.getElementById("btnTodasOfertas");
 btnTodasOfertas.addEventListener("click", () => {
     window.location.href = "OFERTAS/index.html";
 });
+
+// ==========================================
+// MODAL DE BOAS-VINDAS
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const parametros = new URLSearchParams(window.location.search);
+
+    const cadastroSucesso = parametros.get("cadastro");
+
+    const usuarioSalvo = localStorage.getItem("boatourUsuario");
+
+    const modal = document.getElementById("modalBoasVindas");
+    const mensagem = document.getElementById("mensagemBoasVindas");
+
+    const btnIrPerfil = document.getElementById("btnIrPerfil");
+    const btnNavegar = document.getElementById("btnNavegar");
+    const fechar = document.getElementById("fecharBoasVindas");
+
+
+    // ==========================================
+    // ABRIR SOMENTE APÓS CADASTRO
+    // ==========================================
+
+    if (cadastroSucesso === "sucesso" && usuarioSalvo) {
+
+        const usuario = JSON.parse(usuarioSalvo);
+
+        mensagem.innerHTML = `
+            Seja bem-vindo(a), <strong>${usuario.nome}</strong>!
+            Você ainda tem algumas configurações para ajustar
+            no seu perfil. Deseja finalizá-las agora?
+        `;
+
+        modal.classList.add("ativo");
+    }
+
+
+    // ==========================================
+    // IR PARA O PERFIL
+    // ==========================================
+
+    btnIrPerfil.addEventListener("click", () => {
+
+        window.location.href = "PERFIL/index.html";
+
+    });
+
+
+    // ==========================================
+    // CONTINUAR NAVEGANDO
+    // ==========================================
+
+    btnNavegar.addEventListener("click", () => {
+
+        modal.classList.remove("ativo");
+
+        limparURL();
+
+    });
+
+
+    // ==========================================
+    // FECHAR
+    // ==========================================
+
+    fechar.addEventListener("click", () => {
+
+        modal.classList.remove("ativo");
+
+        limparURL();
+
+    });
+
+
+    // ==========================================
+    // LIMPAR PARÂMETRO DA URL
+    // ==========================================
+
+    function limparURL() {
+
+        window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+        );
+
+    }
+
+});

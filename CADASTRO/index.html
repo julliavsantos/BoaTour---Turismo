@@ -18,7 +18,7 @@
 
     <ul class="menu">
         <li><a href="../index.html#inicio">Início</a></li>
-        <li>Destinos</li>
+        <li><a href="../DESTINOS/index.html">Destinos</a></li>
         <li>Voos</li>
         <li>Hotéis</li>
         <li>Atividades</li>
@@ -62,14 +62,14 @@
             </div>
 
             <div class="perfil-links">
-                <a href="#">
+                <a href="../PERFIL/index.html#viagens">
                     <span>✈</span>
                     <div>
                         <strong>Minhas viagens</strong>
                         <small>Veja suas reservas</small>
                     </div>
                 </a>
-                <a href="#">
+                <a href="../PERFIL/index.html#favoritos">
                     <span>❤︎</span>
                     <div>
                         <strong>Favoritos</strong>
@@ -110,36 +110,21 @@
     <div class="linha">
         <div class="campo">
             <label for="nomeCadastro">Nome completo</label>
-            <input 
-                type="text" 
-                id="nomeCadastro" 
-                placeholder="Seu Nome Completo" 
-                autocomplete="off"
-            >
+            <input type="text" id="nomeCadastro" placeholder="Seu Nome Completo" autocomplete="off">
         </div>
     </div>
 
     <div class="linha">
         <div class="campo">
             <label for="cpfCadastro">CPF</label>
-            <input 
-                type="text" 
-                id="cpfCadastro" 
-                placeholder="Seu CPF" 
-                autocomplete="off"
-            >
+            <input type="text" id="cpfCadastro" placeholder="Seu CPF" autocomplete="off">
         </div>
     </div>
 
     <div class="linha">
         <div class="campo">
             <label for="emailCadastro">Email</label>
-            <input 
-                type="email" 
-                id="emailCadastro" 
-                placeholder="email@gmail.com" 
-                autocomplete="off"
-            >
+            <input type="email" id="emailCadastro" placeholder="email@gmail.com" autocomplete="off">
         </div>
     </div>
 
@@ -148,12 +133,7 @@
     <label for="senhaCadastro">Senha</label>
 
     <div class="campo-senha">
-        <input 
-            type="password" 
-            id="senhaCadastro" 
-            placeholder="Senha"
-            autocomplete="new-password"
-        >
+        <input type="password" id="senhaCadastro" placeholder="Senha" autocomplete="new-password">
 
         <button type="button" class="mostrar-senha" data-target="senhaCadastro">
             👁
@@ -167,12 +147,7 @@
     <label for="senhaCadastroConfirmar">Confirmação de senha</label>
 
     <div class="campo-senha">
-        <input 
-            type="password" 
-            id="senhaCadastroConfirmar" 
-            placeholder="Confirme sua senha"
-            autocomplete="new-password"
-        >
+        <input type="password" id="senhaCadastroConfirmar" placeholder="Confirme sua senha" autocomplete="new-password">
 
         <button type="button" class="mostrar-senha" data-target="senhaCadastroConfirmar">
             👁
@@ -259,7 +234,7 @@
             <button class="fechar" id="fecharLogin">&times;</button>
             <h2>Login <span>BoaTour</span></h2>
             <p>Acesse sua conta e aproveite benefícios exclusivos em suas próximas viagens!</p>
-            <input type="cpf" id="cpfLogin" placeholder="CPF">
+            <input type="text" id="cpfLogin" placeholder="CPF">
             <input type="password" id="senhaLogin" placeholder="Senha">
             <button class="btnLogin" id="btnLogin">Entrar</button>
             <p><a href="#">Esqueci minha senha</a></p>
